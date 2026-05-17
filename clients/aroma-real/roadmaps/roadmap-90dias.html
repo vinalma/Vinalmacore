@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap 90 dias — Aroma Real</title>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --bg-card: #131829;
+  --bg-card-2: #1a2038;
+  --bg-elevated: #1f2742;
+  --accent: #d4a574;
+  --accent-soft: #e8c89c;
+  --gold: #c9a35a;
+  --blue: #5b8def;
+  --purple: #a87dff;
+  --text: #ffffff;
+  --text-dim: #9ca3b8;
+  --text-muted: #5d6580;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --border: #232a44;
+  --border-bright: #344066;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.65; min-height:100vh; }
+.container { max-width:1200px; margin:0 auto; padding:32px 24px 80px; }
+
+/* NAV */
+.quick-nav { position:sticky; top:0; background:rgba(10,14,26,0.95); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:10px 0; margin:-32px -24px 32px; z-index:50; }
+.quick-nav-inner { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; flex-wrap:wrap; gap:4px; overflow-x:auto; }
+.quick-nav a { color:var(--text-dim); text-decoration:none; padding:5px 11px; border-radius:8px; font-size:12px; white-space:nowrap; transition:all .2s; }
+.quick-nav a:hover { background:var(--bg-card); color:var(--accent); }
+
+/* HERO */
+.hero { background:radial-gradient(circle at 20% 0%,rgba(212,165,116,.12) 0%,transparent 50%),radial-gradient(circle at 80% 100%,rgba(91,141,239,.08) 0%,transparent 50%),linear-gradient(135deg,#131829 0%,#1a2038 100%); border:1px solid var(--border-bright); border-radius:24px; padding:44px; margin-bottom:40px; position:relative; overflow:hidden; }
+.hero-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(212,165,116,.12); color:var(--accent); padding:5px 13px; border-radius:20px; font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; margin-bottom:18px; }
+.hero h1 { font-size:40px; line-height:1.1; margin-bottom:12px; font-weight:800; letter-spacing:-.8px; }
+.hero h1 .highlight { background:linear-gradient(120deg,var(--accent) 0%,var(--gold) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero .subtitle { color:var(--text-dim); font-size:15px; max-width:760px; line-height:1.6; }
+.hero-stats { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:28px; padding-top:24px; border-top:1px solid var(--border-bright); }
+.hero-stat { display:flex; flex-direction:column; }
+.hero-stat-value { font-size:22px; font-weight:800; color:var(--accent); line-height:1; }
+.hero-stat-label { font-size:11px; color:var(--text-muted); margin-top:5px; text-transform:uppercase; letter-spacing:.8px; }
+
+/* PROGRESS BAR */
+.progress-section { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:22px 28px; margin-bottom:32px; }
+.progress-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.progress-label { font-size:12px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:1.2px; }
+.progress-days { font-size:13px; color:var(--text-dim); }
+.progress-days strong { color:var(--text); }
+.progress-track { height:10px; background:var(--bg-elevated); border-radius:6px; overflow:hidden; position:relative; margin-bottom:12px; }
+.progress-fill { height:100%; border-radius:6px; background:linear-gradient(90deg,var(--accent),var(--gold)); transition:width .6s ease; }
+.progress-phases { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.phase-marker { text-align:center; padding:8px; border-radius:8px; font-size:11px; }
+.phase-marker.active { background:rgba(212,165,116,.1); border:1px solid rgba(212,165,116,.3); }
+.phase-marker.inactive { background:var(--bg-elevated); border:1px solid var(--border); color:var(--text-muted); }
+.phase-marker .pm-num { font-weight:800; color:var(--accent); font-size:13px; }
+.phase-marker.inactive .pm-num { color:var(--text-muted); }
+.phase-marker .pm-name { color:var(--text-dim); font-size:11px; }
+
+/* PENDÊNCIAS */
+.pendencias-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:8px; }
+.pendencia-item { display:flex; align-items:flex-start; gap:10px; padding:12px 14px; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; cursor:pointer; transition:all .2s; user-select:none; }
+.pendencia-item:hover { border-color:var(--border-bright); }
+.pendencia-item.done { opacity:.5; }
+.pendencia-item.done .pi-check { background:var(--success); border-color:var(--success); }
+.pendencia-item.done .pi-check::after { content:'✓'; color:#000; font-size:11px; font-weight:800; }
+.pendencia-item.done .pi-text { text-decoration:line-through; color:var(--text-muted); }
+.pi-check { width:20px; height:20px; border:2px solid var(--border-bright); border-radius:6px; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:1px; transition:all .2s; }
+.pi-text { font-size:13px; color:var(--text-dim); }
+.pi-text strong { color:var(--text); display:block; font-size:13px; margin-bottom:1px; }
+
+/* PAINEL MÉTRICAS */
+.metric-panel { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:28px; }
+.metric-inputs { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.metric-input-group { display:flex; flex-direction:column; gap:6px; }
+.metric-input-label { font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.8px; }
+.metric-input-field { background:var(--bg-elevated); border:1px solid var(--border-bright); border-radius:8px; padding:10px 12px; color:var(--text); font-size:15px; font-weight:700; width:100%; outline:none; transition:border-color .2s; }
+.metric-input-field:focus { border-color:var(--accent); }
+.metric-input-field::placeholder { color:var(--text-muted); font-weight:400; }
+.metric-input-meta { font-size:11px; color:var(--text-muted); margin-top:2px; }
+.metric-input-meta.green { color:var(--success); }
+.metric-input-meta.red { color:var(--danger); }
+.metric-input-meta.yellow { color:var(--warning); }
+.panel-footer { margin-top:16px; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.save-btn { background:rgba(212,165,116,.15); border:1px solid rgba(212,165,116,.3); color:var(--accent); padding:8px 18px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; letter-spacing:.5px; transition:all .2s; }
+.save-btn:hover { background:rgba(212,165,116,.25); }
+.last-saved { font-size:12px; color:var(--text-muted); }
+
+/* SECTION */
+.section { margin-bottom:52px; }
+.section-header { margin-bottom:24px; }
+.section-eyebrow { display:inline-block; color:var(--accent); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:7px; }
+.section-title { font-size:28px; font-weight:800; letter-spacing:-.4px; margin-bottom:7px; }
+.section-desc { color:var(--text-dim); font-size:14px; max-width:780px; }
+
+/* HIPÓTESES */
+.hypothesis-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.hypothesis-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:18px; position:relative; }
+.hypothesis-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--warning); border-radius:14px 0 0 14px; }
+.hypothesis-card.confirmed::before { background:var(--success); }
+.hypothesis-card.dismissed::before { background:var(--danger); }
+.hypothesis-label { display:inline-block; background:rgba(251,191,36,.12); color:var(--warning); padding:3px 10px; border-radius:10px; font-size:10px; font-weight:700; letter-spacing:.8px; margin-bottom:9px; text-transform:uppercase; }
+.hypothesis-card.confirmed .hypothesis-label { background:rgba(74,222,128,.12); color:var(--success); }
+.hypothesis-card h4 { font-size:14px; margin-bottom:7px; line-height:1.4; }
+.hypothesis-card p { font-size:13px; color:var(--text-dim); }
+.validate { margin-top:9px; padding-top:9px; border-top:1px dashed var(--border); font-size:12px; color:var(--accent-soft); }
+.validate strong { color:var(--accent); }
+
+/* DECISÕES */
+.decision-flow { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:24px; }
+.decision-row { display:grid; grid-template-columns:1fr 56px 1fr; gap:14px; align-items:center; padding:16px 0; border-bottom:1px solid var(--border); }
+.decision-row:last-child { border-bottom:none; }
+.decision-side { padding:12px 14px; border-radius:10px; font-size:13px; }
+.decision-no { background:rgba(248,113,113,.06); border:1px solid rgba(248,113,113,.2); color:var(--text-dim); text-decoration:line-through; text-decoration-color:rgba(248,113,113,.4); }
+.decision-yes { background:rgba(74,222,128,.06); border:1px solid rgba(74,222,128,.25); color:var(--text); }
+.decision-arrow { text-align:center; color:var(--accent); font-size:20px; }
+.decision-yes strong { color:var(--success); display:block; margin-bottom:3px; font-size:11px; text-transform:uppercase; letter-spacing:.8px; }
+.decision-no strong { color:var(--danger); display:block; margin-bottom:3px; font-size:11px; text-transform:uppercase; letter-spacing:.8px; }
+
+/* FASES */
+.timeline-overview { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+.phase-card { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:20px; position:relative; overflow:hidden; }
+.phase-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:4px; }
+.phase-1::before { background:linear-gradient(90deg,var(--accent),var(--gold)); }
+.phase-2::before { background:linear-gradient(90deg,var(--blue),var(--purple)); }
+.phase-3::before { background:linear-gradient(90deg,var(--success),var(--accent)); }
+.phase-num { font-size:11px; font-weight:700; letter-spacing:1.5px; color:var(--accent); margin-bottom:4px; text-transform:uppercase; }
+.phase-card h3 { font-size:16px; margin-bottom:5px; }
+.phase-period { font-size:12px; color:var(--text-muted); margin-bottom:10px; }
+.phase-card p { font-size:13px; color:var(--text-dim); }
+.phase-tag { display:inline-block; margin-top:10px; padding:3px 9px; background:var(--bg-elevated); border-radius:8px; font-size:11px; color:var(--accent-soft); }
+
+/* CAMPANHA TREE */
+.campaign-tree { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:26px; font-family:'SF Mono',Monaco,Consolas,monospace; }
+.tree-node { position:relative; padding:9px 0 9px 28px; }
+.tree-node::before { content:''; position:absolute; left:0; top:0; bottom:0; border-left:2px solid var(--border-bright); }
+.tree-node::after { content:''; position:absolute; left:0; top:20px; width:18px; border-top:2px solid var(--border-bright); }
+.tree-node:last-child::before { height:20px; }
+.tree-level-0 { padding-left:0; }
+.tree-level-0::before,.tree-level-0::after { display:none; }
+.tree-label { display:inline-block; padding:5px 11px; border-radius:8px; font-size:13px; font-weight:600; }
+.tree-campanha .tree-label { background:rgba(212,165,116,.15); color:var(--accent); border:1px solid rgba(212,165,116,.3); }
+.tree-conjunto .tree-label { background:rgba(91,141,239,.12); color:var(--blue); border:1px solid rgba(91,141,239,.3); }
+.tree-anuncio .tree-label { background:rgba(168,125,255,.12); color:var(--purple); border:1px solid rgba(168,125,255,.3); }
+.tree-meta { font-size:12px; color:var(--text-muted); margin-top:3px; margin-left:4px; font-family:-apple-system,BlinkMacSystemFont,sans-serif; }
+
+/* BUDGET */
+.budget-grid { display:grid; grid-template-columns:2fr 1fr; gap:18px; }
+.budget-bars { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:22px; }
+.budget-bar-row { margin-bottom:14px; }
+.budget-bar-row:last-child { margin-bottom:0; }
+.budget-bar-label { display:flex; justify-content:space-between; margin-bottom:6px; font-size:13px; }
+.budget-bar-label .name { color:var(--text); font-weight:600; }
+.budget-bar-label .value { color:var(--accent); font-weight:700; }
+.budget-bar-track { height:7px; background:var(--bg-elevated); border-radius:4px; overflow:hidden; }
+.budget-bar-fill { height:100%; border-radius:4px; background:linear-gradient(90deg,var(--accent),var(--gold)); }
+.budget-summary { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:22px; display:flex; flex-direction:column; justify-content:center; }
+.budget-summary .total-label { font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+.budget-summary .total-value { font-size:30px; font-weight:800; color:var(--accent); line-height:1; margin-bottom:14px; }
+.budget-summary .total-detail { font-size:12px; color:var(--text-dim); padding-top:12px; border-top:1px solid var(--border); }
+
+/* CRIATIVOS */
+.creative-matrix { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.creative-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:18px; }
+.creative-num { font-size:11px; font-weight:700; color:var(--accent); letter-spacing:1.5px; margin-bottom:7px; }
+.creative-card h4 { font-size:14px; margin-bottom:10px; }
+.creative-block { margin-bottom:10px; padding-bottom:10px; border-bottom:1px dashed var(--border); font-size:13px; }
+.creative-block:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.creative-block .label { font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:3px; }
+.creative-block .value { color:var(--text-dim); line-height:1.5; }
+.creative-block .value em { color:var(--accent-soft); font-style:normal; font-family:monospace; font-size:12px; }
+
+/* MÉTRICAS */
+.metrics-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.metric-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:18px; }
+.metric-name { font-size:13px; color:var(--text-muted); margin-bottom:5px; }
+.metric-target { font-size:20px; font-weight:800; color:var(--accent); margin-bottom:7px; }
+.metric-desc { font-size:12px; color:var(--text-dim); line-height:1.5; }
+.metric-tag { display:inline-block; margin-top:9px; font-size:10px; padding:3px 8px; border-radius:6px; text-transform:uppercase; letter-spacing:.5px; font-weight:700; }
+.metric-tag.essencial { background:rgba(74,222,128,.12); color:var(--success); }
+.metric-tag.diagnostica { background:rgba(91,141,239,.12); color:var(--blue); }
+.metric-tag.vaidade { background:rgba(93,101,128,.2); color:var(--text-muted); }
+
+/* WEEK CARDS */
+.week-card { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; margin-bottom:12px; overflow:hidden; transition:border-color .2s; }
+.week-card:hover { border-color:var(--border-bright); }
+.week-header { display:flex; align-items:center; justify-content:space-between; padding:18px 22px; cursor:pointer; user-select:none; }
+.week-header-left { display:flex; align-items:center; gap:14px; }
+.week-num { width:42px; height:42px; background:var(--bg-elevated); border:1px solid var(--border-bright); border-radius:11px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; color:var(--accent); flex-shrink:0; }
+.week-info h4 { font-size:15px; margin-bottom:2px; }
+.week-info p { font-size:13px; color:var(--text-dim); }
+.week-toggle { color:var(--accent); font-size:22px; transition:transform .3s; flex-shrink:0; }
+.week-card.open .week-toggle { transform:rotate(45deg); }
+.week-body { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+.week-card.open .week-body { max-height:6000px; }
+.week-content { padding:0 22px 22px; border-top:1px solid var(--border); padding-top:18px; }
+.week-block { margin-bottom:18px; }
+.week-block:last-child { margin-bottom:0; }
+.week-block-title { font-size:11px; font-weight:700; color:var(--accent); letter-spacing:1.2px; text-transform:uppercase; margin-bottom:9px; }
+.task-list { list-style:none; }
+.task-list li { padding:6px 0; display:flex; align-items:flex-start; gap:9px; font-size:14px; color:var(--text-dim); }
+.task-list li::before { content:'▸'; color:var(--accent); flex-shrink:0; font-weight:700; }
+.task-list strong { color:var(--text); font-weight:600; }
+.kpi-row { display:flex; flex-wrap:wrap; gap:7px; margin-top:7px; }
+.kpi-pill { background:var(--bg-elevated); border:1px solid var(--border-bright); padding:5px 11px; border-radius:8px; font-size:12px; color:var(--text-dim); }
+.kpi-pill strong { color:var(--accent); }
+
+/* RISCOS */
+.risk-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.risk-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:18px; border-left:3px solid var(--danger); }
+.risk-card.warning { border-left-color:var(--warning); }
+.risk-card.medium { border-left-color:var(--blue); }
+.risk-card h4 { font-size:14px; margin-bottom:7px; display:flex; align-items:center; justify-content:space-between; }
+.risk-severity { font-size:10px; padding:2px 8px; border-radius:6px; font-weight:700; letter-spacing:.5px; }
+.risk-card .risk-severity { background:rgba(248,113,113,.15); color:var(--danger); }
+.risk-card.warning .risk-severity { background:rgba(251,191,36,.15); color:var(--warning); }
+.risk-card.medium .risk-severity { background:rgba(91,141,239,.15); color:var(--blue); }
+.risk-card p { font-size:13px; color:var(--text-dim); margin-bottom:9px; }
+.risk-mitigation { background:var(--bg-elevated); padding:9px 11px; border-radius:8px; font-size:12px; }
+.risk-mitigation strong { color:var(--success); display:block; margin-bottom:3px; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+.risk-mitigation span { color:var(--text-dim); }
+
+/* PLANO B */
+.planob-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.planob-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:20px; }
+.planob-trigger { font-size:11px; color:var(--danger); font-weight:700; letter-spacing:.8px; text-transform:uppercase; margin-bottom:8px; }
+.planob-card h4 { font-size:14px; margin-bottom:6px; }
+.planob-card p { font-size:13px; color:var(--text-dim); margin-bottom:10px; }
+.planob-action { background:var(--bg-elevated); border-radius:8px; padding:10px 12px; font-size:12px; color:var(--accent-soft); }
+.planob-action strong { color:var(--accent); display:block; margin-bottom:3px; font-size:11px; }
+
+/* CALLOUT */
+.callout { background:linear-gradient(135deg,rgba(212,165,116,.08) 0%,rgba(212,165,116,.02) 100%); border-left:4px solid var(--accent); border-radius:8px; padding:14px 18px; margin:14px 0; }
+.callout-title { font-weight:700; color:var(--accent); font-size:11px; text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; }
+.callout-content { font-size:14px; color:var(--text-dim); }
+.callout.danger { background:linear-gradient(135deg,rgba(248,113,113,.08) 0%,transparent 100%); border-left-color:var(--danger); }
+.callout.danger .callout-title { color:var(--danger); }
+.callout.success { background:linear-gradient(135deg,rgba(74,222,128,.08) 0%,transparent 100%); border-left-color:var(--success); }
+.callout.success .callout-title { color:var(--success); }
+.callout.blue { background:linear-gradient(135deg,rgba(91,141,239,.08) 0%,transparent 100%); border-left-color:var(--blue); }
+.callout.blue .callout-title { color:var(--blue); }
+
+/* FOOTER */
+.footer { margin-top:60px; padding-top:28px; border-top:1px solid var(--border); text-align:center; color:var(--text-muted); font-size:13px; }
+
+/* RESPONSIVE */
+
+/* FUNIL AUTORIDADE */
+.funil-wrapper { display:grid; grid-template-columns:1fr 2px 1fr 2px 1fr; gap:0; align-items:start; }
+.funil-stage { background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:22px; }
+.funil-connector { display:flex; align-items:center; justify-content:center; padding:0 8px; margin-top:60px; }
+.funil-arrow { color:var(--accent); font-size:24px; }
+.funil-num { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:10px; font-size:13px; font-weight:800; margin-bottom:12px; }
+.funil-num.s1 { background:rgba(212,165,116,.15); color:var(--accent); }
+.funil-num.s2 { background:rgba(91,141,239,.15); color:var(--blue); }
+.funil-num.s3 { background:rgba(74,222,128,.15); color:var(--success); }
+.funil-stage h4 { font-size:16px; margin-bottom:6px; }
+.funil-stage .stage-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+.funil-stage .stage-label.s1 { color:var(--accent); }
+.funil-stage .stage-label.s2 { color:var(--blue); }
+.funil-stage .stage-label.s3 { color:var(--success); }
+.funil-stage p { font-size:13px; color:var(--text-dim); margin-bottom:12px; }
+.content-list { list-style:none; }
+.content-list li { font-size:13px; color:var(--text-dim); padding:5px 0; display:flex; gap:8px; align-items:flex-start; border-bottom:1px dashed var(--border); }
+.content-list li:last-child { border-bottom:none; }
+.content-list li::before { content:'▸'; color:var(--accent); flex-shrink:0; }
+.content-list strong { color:var(--text); }
+.diferencial-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:24px; }
+.diferencial-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:18px; border-left:3px solid var(--accent); }
+.diferencial-card h4 { font-size:14px; margin-bottom:6px; }
+.diferencial-card p { font-size:13px; color:var(--text-dim); }
+.diferencial-card .d-tag { font-size:10px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.8px; margin-bottom:8px; display:block; }
+@media (max-width:900px) { .funil-wrapper { grid-template-columns:1fr; } .funil-connector { display:none; } .diferencial-grid { grid-template-columns:1fr; } }
+
+@media (max-width:900px) {
+  .hero h1 { font-size:28px; }
+  .hero-stats { grid-template-columns:repeat(3,1fr); }
+  .hypothesis-grid,.creative-matrix,.risk-grid,.metrics-grid,.timeline-overview,.planob-grid { grid-template-columns:1fr; }
+  .decision-row { grid-template-columns:1fr; gap:6px; }
+  .decision-arrow { display:none; }
+  .budget-grid { grid-template-columns:1fr; }
+  .metric-inputs { grid-template-columns:repeat(2,1fr); }
+  .pendencias-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- NAV -->
+<nav class="quick-nav">
+  <div class="quick-nav-inner">
+    <a href="#progresso">📈 Progresso</a>
+    <a href="#pendencias">⏳ Pendências</a>
+    <a href="#metricas-live">📊 Painel</a>
+    <a href="#hipoteses">🎯 Hipóteses</a>
+    <a href="#decisoes">⚖️ Decisões</a>
+    <a href="#fases">🗓️ Fases</a>
+    <a href="#estrutura">🏗️ Estrutura</a>
+    <a href="#orcamento">💰 Orçamento</a>
+    <a href="#criativos">🎨 Criativos</a>
+    <a href="#kpis">📐 KPIs</a>
+    <a href="#funil">🧪 Funil</a>
+    <a href="#semanas">📅 Semanas</a>
+    <a href="#riscos">⚠️ Riscos</a>
+    <a href="#planob">🛟 Plano B</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-tag">🔒 PLANO INTERNO · USO PESSOAL</span>
+  <h1>Roadmap <span class="highlight">90 dias</span><br>Aroma Real.</h1>
+  <p class="subtitle">Execução semana a semana. Sem landing page — vitrine é o Instagram. Remarketing via Custom Audience de engajamento, sem pixel. Métricas editáveis — atualize toda segunda-feira.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-value">90</div>
+      <div class="hero-stat-label">Dias totais</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">R$ 2,7k</div>
+      <div class="hero-stat-label">Mídia 3 meses</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">R$ 26</div>
+      <div class="hero-stat-label">Ticket médio</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">1.000</div>
+      <div class="hero-stat-label">Contatos WA</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">+20%</div>
+      <div class="hero-stat-label">Meta 30 dias</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESSO -->
+<div class="progress-section" id="progresso">
+  <div class="progress-header">
+    <div class="progress-label">⏱️ Progresso dos 90 dias</div>
+    <div class="progress-days" id="progress-text">—</div>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+  <div class="progress-phases">
+    <div class="phase-marker" id="pm1">
+      <div class="pm-num">Fase 1</div>
+      <div class="pm-name">Fundação · Dias 1–30</div>
+    </div>
+    <div class="phase-marker inactive" id="pm2">
+      <div class="pm-num">Fase 2</div>
+      <div class="pm-name">Otimização · Dias 31–60</div>
+    </div>
+    <div class="phase-marker inactive" id="pm3">
+      <div class="pm-num">Fase 3</div>
+      <div class="pm-name">Escala · Dias 61–90</div>
+    </div>
+  </div>
+</div>
+
+<!-- PENDÊNCIAS -->
+<div class="section" id="pendencias">
+  <div class="section-header">
+    <div class="section-eyebrow">O que está travado</div>
+    <h2 class="section-title">Pendências do cliente</h2>
+    <p class="section-desc">Sem resolver isso, nenhuma campanha sobe. Clique para marcar como resolvido.</p>
+  </div>
+  <div class="pendencias-grid">
+    <div class="pendencia-item" onclick="togglePendencia(this)" data-id="p1">
+      <div class="pi-check"></div>
+      <div class="pi-text"><strong>Criar Business Manager</strong>João (filho) cria conta na Meta Business Suite</div>
+    </div>
+    <div class="pendencia-item" onclick="togglePendencia(this)" data-id="p2">
+      <div class="pi-check"></div>
+      <div class="pi-text"><strong>Acesso ao Instagram</strong>Conceder acesso via Business Manager</div>
+    </div>
+    <div class="pendencia-item" onclick="togglePendencia(this)" data-id="p3">
+      <div class="pi-check"></div>
+      <div class="pi-text"><strong>Cartão cadastrado no Meta</strong>Cartão da empresa na conta de anúncios</div>
+    </div>
+    <div class="pendencia-item" onclick="togglePendencia(this)" data-id="p4">
+      <div class="pi-check"></div>
+      <div class="pi-text"><strong>Acesso gerente GMN (Google Meu Negócio)</strong>Adicionar Vinícius como gerente</div>
+    </div>
+    <div class="pendencia-item" onclick="togglePendencia(this)" data-id="p5">
+      <div class="pi-check"></div>
+      <div class="pi-text"><strong>15-20 fotos da loja e produtos</strong>Fachada, interior, prateleiras, produtos top</div>
+    </div>
+    <div class="pendencia-item" onclick="togglePendencia(this)" data-id="p6">
+      <div class="pi-check"></div>
+      <div class="pi-text"><strong>Logo em boa qualidade</strong>PNG com fundo transparente, mínimo 500px</div>
+    </div>
+    <div class="pendencia-item" onclick="togglePendencia(this)" data-id="p7">
+      <div class="pi-check"></div>
+      <div class="pi-text"><strong>2-3 vídeos curtos da loja</strong>Tour pelo espaço, produtos, processo do perfume</div>
+    </div>
+    <div class="pendencia-item" onclick="togglePendencia(this)" data-id="p8">
+      <div class="pi-check"></div>
+      <div class="pi-text"><strong>Conectar Instagram ao Business Manager</strong>Necessário para Custom Audience de engajamento (remarketing sem pixel)</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAINEL DE MÉTRICAS EDITÁVEL -->
+<div class="section" id="metricas-live">
+  <div class="section-header">
+    <div class="section-eyebrow">Atualizar toda segunda-feira</div>
+    <h2 class="section-title">Painel de métricas atual</h2>
+    <p class="section-desc">Preencha com os números reais da semana. Salvo localmente no navegador.</p>
+  </div>
+  <div class="metric-panel">
+    <div class="metric-inputs">
+      <div class="metric-input-group">
+        <label class="metric-input-label">Mensagens WA (mês)</label>
+        <input class="metric-input-field" id="m-msgs" placeholder="—" type="text">
+        <div class="metric-input-meta" id="m-msgs-meta">Alvo mês 1: 40–80</div>
+      </div>
+      <div class="metric-input-group">
+        <label class="metric-input-label">CPL atual (R$)</label>
+        <input class="metric-input-field" id="m-cpl" placeholder="—" type="text">
+        <div class="metric-input-meta" id="m-cpl-meta">Alvo: R$ 4–10</div>
+      </div>
+      <div class="metric-input-group">
+        <label class="metric-input-label">Avaliações Google</label>
+        <input class="metric-input-field" id="m-reviews" placeholder="4" type="text">
+        <div class="metric-input-meta" id="m-reviews-meta">Alvo 30 dias: 15+</div>
+      </div>
+      <div class="metric-input-group">
+        <label class="metric-input-label">Taxa conv. WA→venda (%)</label>
+        <input class="metric-input-field" id="m-conv" placeholder="37%" type="text">
+        <div class="metric-input-meta" id="m-conv-meta">Baseline atual: ~37%</div>
+      </div>
+      <div class="metric-input-group">
+        <label class="metric-input-label">Faturamento mês (R$)</label>
+        <input class="metric-input-field" id="m-fat" placeholder="10.000" type="text">
+        <div class="metric-input-meta" id="m-fat-meta">Alvo: R$ 12.000</div>
+      </div>
+      <div class="metric-input-group">
+        <label class="metric-input-label">CTR anúncios (%)</label>
+        <input class="metric-input-field" id="m-ctr" placeholder="—" type="text">
+        <div class="metric-input-meta" id="m-ctr-meta">Mínimo: 1,5%</div>
+      </div>
+      <div class="metric-input-group">
+        <label class="metric-input-label">Visitas físicas/sem</label>
+        <input class="metric-input-field" id="m-visits" placeholder="100" type="text">
+        <div class="metric-input-meta" id="m-visits-meta">Baseline: 100/sem</div>
+      </div>
+      <div class="metric-input-group">
+        <label class="metric-input-label">Nota (observação)</label>
+        <input class="metric-input-field" id="m-note" placeholder="Semana X — ..." type="text">
+        <div class="metric-input-meta">Livre</div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class="save-btn" onclick="saveMetrics()">💾 Salvar métricas</button>
+      <div class="last-saved" id="last-saved">Não salvo ainda</div>
+    </div>
+  </div>
+</div>
+
+<!-- HIPÓTESES -->
+<div class="section" id="hipoteses">
+  <div class="section-header">
+    <div class="section-eyebrow">Confirmar nas primeiras semanas</div>
+    <h2 class="section-title">Hipóteses que guiam tudo</h2>
+    <p class="section-desc">São hipóteses até os dados provarem. Se uma cair, parte do plano é refeita. Algumas já foram confirmadas no dossiê.</p>
+  </div>
+  <div class="hypothesis-grid">
+
+    <div class="hypothesis-card confirmed">
+      <span class="hypothesis-label">✓ Confirmado · Ticket</span>
+      <h4>Ticket médio de R$ 26 com produto âncora a R$ 10</h4>
+      <p>Confirmado no dossiê. Produto mais vendido é essência a R$ 10 — implica volume alto e oportunidade de upsell imediata.</p>
+      <div class="validate"><strong>Ação:</strong> criar combo (2 essências por R$ 18) pra testar elevação de ticket desde a semana 1.</div>
+    </div>
+
+    <div class="hypothesis-card confirmed">
+      <span class="hypothesis-label">✓ Confirmado · Conversão WA</span>
+      <h4>37% das conversas no WA viram venda (15 de 40/semana)</h4>
+      <p>Confirmado pelo cliente. Taxa já saudável — o foco é aumentar volume de entrada, não melhorar a taxa ainda.</p>
+      <div class="validate"><strong>Acompanhar:</strong> se com tráfego pago a qualidade do lead cair, taxa vai abaixar. Monitorar nas S3/S4.</div>
+    </div>
+
+    <div class="hypothesis-card">
+      <span class="hypothesis-label">Hipótese · Custo</span>
+      <h4>CPL (custo por mensagem) entre R$ 4 e R$ 10 em Salvador</h4>
+      <p>Estimativa pra nicho local com criativo decente. Sem dado real ainda — pode ser melhor (menos concorrência no bairro).</p>
+      <div class="validate"><strong>Validar:</strong> primeira semana de campanha já dá noção. Acima de R$ 15 = problema no criativo ou segmentação.</div>
+    </div>
+
+    <div class="hypothesis-card confirmed">
+      <span class="hypothesis-label">✓ Confirmado · Operação</span>
+      <h4>WA responde em 15–30 min em horário comercial</h4>
+      <p>Confirmado pelo dossiê. Aleia responde. Bom baseline — mas testar como cliente fantasma na S1 pra confirmar.</p>
+      <div class="validate"><strong>Risco:</strong> se volume aumentar muito com tráfego pago, tempo de resposta pode subir. Treinar protocolo simples.</div>
+    </div>
+
+    <div class="hypothesis-card">
+      <span class="hypothesis-label">Hipótese · Mercado</span>
+      <h4>Concorrentes em Salvador não fazem tráfego pago bem feito</h4>
+      <p>Sem concorrente direto no bairro (confirmado). Mas há perfumarias em outros bairros — verificar biblioteca de anúncios Meta.</p>
+      <div class="validate"><strong>Validar S1:</strong> buscar "perfumaria Salvador", "essência Salvador" na Biblioteca de Anúncios da Meta.</div>
+    </div>
+
+    <div class="hypothesis-card confirmed">
+      <span class="hypothesis-label">✓ Confirmado · Sazonalidade</span>
+      <h4>Pico em set/nov/dez — vale em jan/fev</h4>
+      <p>Confirmado. Início é maio — fora dos picos. Opportunity: criar demanda em meses de vale e se preparar pra set/nov/dez.</p>
+      <div class="validate"><strong>Ação:</strong> guardar 10% do orçamento de cada mês pra boost sazonal.</div>
+    </div>
+
+    <div class="hypothesis-card confirmed">
+      <span class="hypothesis-label">✓ Confirmado · Base atual</span>
+      <h4>1.000 contatos no WA, 60% recorrentes — base não trabalhada</h4>
+      <p>Ativo mais valioso e subutilizado. Nenhuma automação, nenhuma sequência ativa. Potencial imediato de reativação.</p>
+      <div class="validate"><strong>Ação S2:</strong> criar mensagem de reativação simples pra lista. Baixo custo, impacto imediato.</div>
+    </div>
+
+    <div class="hypothesis-card">
+      <span class="hypothesis-label">Hipótese · Audience</span>
+      <h4>Homens 25-55 em Salvador respondem bem a anúncio local de perfumaria</h4>
+      <p>Perfil confirmado — mas verificar se o público no Meta é grande o suficiente no raio de 10km.</p>
+      <div class="validate"><strong>Validar:</strong> checar audience size no Gerenciador antes de subir. Se &lt; 50k, ampliar raio pra 15km.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DECISÕES -->
+<div class="section" id="decisoes">
+  <div class="section-header">
+    <div class="section-eyebrow">Por que assim e não de outro jeito</div>
+    <h2 class="section-title">Decisões estratégicas</h2>
+    <p class="section-desc">Cada decisão tem trade-off. Revisitar apenas quando os dados desafiarem — e nunca mudar tudo de uma vez.</p>
+  </div>
+  <div class="decision-flow">
+    <div class="decision-row">
+      <div class="decision-side decision-no"><strong>Descartado</strong>Campanha de vendas com catálogo / e-commerce</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-side decision-yes"><strong>Escolhido</strong>Click-to-WhatsApp — loja física com atendimento humano forte. Humano converte mais que e-commerce sem estrutura logística.</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-side decision-no"><strong>Descartado</strong>Segmentação ampla (Bahia toda ou Brasil)</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-side decision-yes"><strong>Escolhido</strong>Raio 10-15km de Salvador. Produto físico, entrega em casa = raio limitado. Público menor e mais barato.</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-side decision-no"><strong>Descartado</strong>Meta + Google Ads + TikTok em simultâneo</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-side decision-yes"><strong>Escolhido</strong>100% Meta nos primeiros 90 dias + GMN orgânico. Budget de R$ 900 não comporta múltiplas plataformas com dados confiáveis.</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-side decision-no"><strong>Descartado</strong>5+ campanhas, 20+ públicos logo de início</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-side decision-yes"><strong>Escolhido</strong>2 campanhas no lançamento. Estrutura simples que o Meta consegue otimizar com o budget disponível.</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-side decision-no"><strong>Descartado</strong>Criativo polido de agência (2+ semanas de produção)</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-side decision-yes"><strong>Escolhido</strong>Criativo "real e rápido" — celular, Canva, UGC do dono. Autenticidade local converte melhor no nicho.</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-side decision-no"><strong>Descartado</strong>Lookalike e Remarketing logo na semana 1</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-side decision-yes"><strong>Escolhido</strong>Público frio no mês 1. Remarketing e LAL só a partir da semana 5 — pixel precisa de dados primeiro.</div>
+    </div>
+    <div class="decision-row">
+      <div class="decision-side decision-no"><strong>Descartado</strong>Ignorar a lista de 1.000 contatos WA</div>
+      <div class="decision-arrow">→</div>
+      <div class="decision-side decision-yes"><strong>Escolhido</strong>Reativar a base existente na semana 2 — custo zero, resultado imediato, 60% são recorrentes.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FASES -->
+<div class="section" id="fases">
+  <div class="section-header">
+    <div class="section-eyebrow">Visão macro</div>
+    <h2 class="section-title">As 3 fases dos 90 dias</h2>
+    <p class="section-desc">Não otimizar antes de aprender. Não escalar antes de otimizar.</p>
+  </div>
+  <div class="timeline-overview">
+    <div class="phase-card phase-1">
+      <div class="phase-num">FASE 1 · DIAS 1–30</div>
+      <h3>Fundação & Aprendizado</h3>
+      <div class="phase-period">18/05 → 17/06 · Semanas 1–4</div>
+      <p>Estrutura no ar. GMN otimizado. Landing publicada. Primeira campanha rodando. Reativação da lista WA. Coleta de dados — não otimize ainda.</p>
+      <div class="phase-tag">🎯 Objetivo: dados confiáveis</div>
+    </div>
+    <div class="phase-card phase-2">
+      <div class="phase-num">FASE 2 · DIAS 31–60</div>
+      <h3>Otimização & Refino</h3>
+      <div class="phase-period">18/06 → 17/07 · Semanas 5–8</div>
+      <p>Pausar o que não funciona. Escalar o que funciona. Criativos novos. Remarketing ativo. Refinar copys e segmentação.</p>
+      <div class="phase-tag">🎯 Objetivo: baixar CPL</div>
+    </div>
+    <div class="phase-card phase-3">
+      <div class="phase-num">FASE 3 · DIAS 61–90</div>
+      <h3>Escala & Sistema</h3>
+      <div class="phase-period">18/07 → 16/08 · Semanas 9–13</div>
+      <p>Aumentar orçamento nos vencedores. Lookalike baseado em dados reais. Sistematizar relatórios e operação.</p>
+      <div class="phase-tag">🎯 Objetivo: previsibilidade</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-title">⏱️ Janela de aprendizado da Meta</div>
+    <div class="callout-content">A Meta exige ~50 conversões por conjunto pra sair da fase de aprendizado. Com CPL de R$ 6–8 e orçamento de R$ 25–30/dia, isso leva 7–12 dias. Por isso a Fase 1 tem 30 dias — preciso de 2 ciclos completos pra ter base estatística mínima antes de otimizar.</div>
+  </div>
+</div>
+
+<!-- ESTRUTURA TÉCNICA -->
+<div class="section" id="estrutura">
+  <div class="section-header">
+    <div class="section-eyebrow">Como tudo se encaixa</div>
+    <h2 class="section-title">Estrutura técnica das campanhas</h2>
+    <p class="section-desc">Esqueleto que vai pro ar na semana 3. Simples por design — complexidade só quando justificar.</p>
+  </div>
+  <div class="campaign-tree">
+    <div class="tree-node tree-level-0 tree-campanha">
+      <span class="tree-label">📣 Campanha 1 — Mensagens · Aquisição (Semana 3 →)</span>
+      <div class="tree-meta">Objetivo: Engajamento → Mensagens · WhatsApp Business · Orçamento CBO: R$ 25–30/dia</div>
+      <div class="tree-node tree-conjunto">
+        <span class="tree-label">🎯 Conjunto A — Salvador 10km · Advantage+ Audience</span>
+        <div class="tree-meta">Geo: Salvador raio 10km · Idade: 25–55 · Homens · Sem interesses (Meta decide) · Advantage+</div>
+        <div class="tree-node tree-anuncio"><span class="tree-label">🖼️ A1 — Imagem fachada/interior da loja</span></div>
+        <div class="tree-node tree-anuncio"><span class="tree-label">🎬 A2 — Vídeo 15s tour rápido</span></div>
+        <div class="tree-node tree-anuncio"><span class="tree-label">🖼️ A3 — Carrossel produtos top</span></div>
+      </div>
+      <div class="tree-node tree-conjunto">
+        <span class="tree-label">🎯 Conjunto B — Salvador 10km · Interesses (controle)</span>
+        <div class="tree-meta">Interesses: aromaterapia, perfumaria, decoração home · Backup se Advantage+ falhar</div>
+        <div class="tree-node tree-anuncio"><span class="tree-label">🖼️ B1 — Imagem produto destaque</span></div>
+        <div class="tree-node tree-anuncio"><span class="tree-label">🎬 B2 — UGC com depoimento de cliente</span></div>
+      </div>
+    </div>
+    <div class="tree-node tree-level-0 tree-campanha" style="margin-top:14px">
+      <span class="tree-label">📣 Campanha 2 — Remarketing · Engajamento Instagram (Semana 5 →)</span>
+      <div class="tree-meta">Ativar na Fase 2 · Sem pixel necessário · R$ 5–8/dia · Objetivo: Mensagens</div>
+      <div class="tree-node tree-conjunto">
+        <span class="tree-label">🎯 Custom Audience — Engajadores Insta (90 dias)</span>
+        <div class="tree-meta">Quem interagiu com posts, Reels, visitou perfil ou enviou DM nos últimos 90 dias</div>
+        <div class="tree-node tree-anuncio"><span class="tree-label">🖼️ Criativo de oferta direta — já conhecem a marca</span></div>
+      </div>
+      <div class="tree-node tree-conjunto">
+        <span class="tree-label">🎯 Custom Audience — Assistiu 50%+ dos vídeos (30 dias)</span>
+        <div class="tree-meta">Lead mais quente — assistiu conteúdo educativo e ainda não comprou</div>
+        <div class="tree-node tree-anuncio"><span class="tree-label">🎬 Criativo com CTA direto para o WA</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="callout success" style="margin-top:12px">
+    <div class="callout-title">✓ Sem landing page, sem pixel — e tudo bem</div>
+    <div class="callout-content">Campanha Click-to-WhatsApp registra a conversa iniciada como conversão <strong>nativamente</strong> no Meta Ads — sem pixel. Para remarketing, Custom Audience de engajamento do Instagram substitui completamente o pixel de site: pessoas que interagiram com posts, assistiram vídeos, visitaram o perfil ou enviaram DM. Mais simples, menos infraestrutura, mesmo resultado.</div>
+  </div>
+  <div class="callout" style="margin-top:12px">
+    <div class="callout-title">💡 Por que essa estrutura</div>
+    <div class="callout-content">Conjunto A (Advantage+) é a aposta principal. Conjunto B é controle. Sem landing page, sem pixel de site — o remarketing usa Custom Audience de engajamento do Instagram, que é nativo no Meta e não exige nenhuma infraestrutura extra. Campanha 2 só ativa na Fase 2 quando houver audiência de engajamento suficiente (~500+ pessoas).</div>
+  </div>
+</div>
+
+<!-- ORÇAMENTO -->
+<div class="section" id="orcamento">
+  <div class="section-header">
+    <div class="section-eyebrow">Onde o dinheiro vai</div>
+    <h2 class="section-title">Alocação do orçamento — R$ 900/mês</h2>
+    <p class="section-desc">Alocação inicial. Sem landing page = sem campanha de tráfego. Budget todo em mensagens. Remarketing via engajamento nativo do Instagram — sem pixel necessário.</p>
+  </div>
+  <div class="budget-grid">
+    <div class="budget-bars">
+      <div class="budget-bar-row">
+        <div class="budget-bar-label"><span class="name">Campanha 1 · Conjunto A — Advantage+</span><span class="value">56% · R$ 500</span></div>
+        <div class="budget-bar-track"><div class="budget-bar-fill" style="width:56%"></div></div>
+      </div>
+      <div class="budget-bar-row">
+        <div class="budget-bar-label"><span class="name">Campanha 1 · Conjunto B — Interesses</span><span class="value">28% · R$ 250</span></div>
+        <div class="budget-bar-track"><div class="budget-bar-fill" style="width:28%"></div></div>
+      </div>
+      <div class="budget-bar-row">
+        <div class="budget-bar-label"><span class="name">Campanha 2 · Remarketing (engajamento Insta)</span><span class="value">5% · R$ 50</span></div>
+        <div class="budget-bar-track"><div class="budget-bar-fill" style="width:5%"></div></div>
+      </div>
+      <div class="budget-bar-row">
+        <div class="budget-bar-label"><span class="name">Reserva tática · Sazonalidade / promos</span><span class="value">11% · R$ 100</span></div>
+        <div class="budget-bar-track"><div class="budget-bar-fill" style="width:11%"></div></div>
+      </div>
+    </div>
+    <div class="budget-summary">
+      <div class="total-label">Total mensal</div>
+      <div class="total-value">R$ 900</div>
+      <div class="total-detail">Sem landing page = sem Campanha de Tráfego. Budget redistribuído pra mensagens. Remarketing usa Custom Audience de engajamento do Instagram (sem pixel). Regra: +20% por vez no vencedor.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FUNIL AUTORIDADE -->
+<div class="section" id="funil">
+  <div class="section-header">
+    <div class="section-eyebrow">O que ninguém mais tem</div>
+    <h2 class="section-title">Diferenciais + Funil de Autoridade</h2>
+    <p class="section-desc">O dono é químico. Isso muda tudo. A estratégia não é só de tráfego — é de educação e posicionamento de especialista.</p>
+  </div>
+
+  <div class="diferencial-grid">
+    <div class="diferencial-card">
+      <span class="d-tag">🧪 Diferencial 1</span>
+      <h4>Dono é químico — não é revendedor</h4>
+      <p>Sabe composição, fixação, concentração e como manipular corretamente. Isso é autoridade técnica real — ninguém na vizinhança tem isso.</p>
+    </div>
+    <div class="diferencial-card">
+      <span class="d-tag">💎 Diferencial 2</span>
+      <h4>Vende essência pura (coração) — não diluída</h4>
+      <p>A maioria do mercado vende HS (hidro solúvel) sem explicar a diferença. Quem sabe a diferença, valoriza. Quem não sabe, precisa aprender — e é aí que entra o conteúdo.</p>
+    </div>
+    <div class="diferencial-card">
+      <span class="d-tag">💰 Diferencial 3</span>
+      <h4>Menor preço de Salvador</h4>
+      <p>Não precisa esconder — usar como argumento claro. "Preço de fábrica porque a gente manipula." Posicionamento de origem, não de promoção.</p>
+    </div>
+    <div class="diferencial-card">
+      <span class="d-tag">🎓 Diferencial 4</span>
+      <h4>Educa o cliente — não só vende</h4>
+      <p>Disposição de ensinar é rara. Isso cria fidelização. Quem aprendeu com você, compra de você. Conteúdo educativo é o motor do funil orgânico.</p>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-bottom:20px;margin-top:8px">
+    <h2 class="section-title" style="font-size:22px">Funil de conteúdo</h2>
+    <p class="section-desc">Cada etapa tem um trabalho diferente. Conteúdo atrai e educa. Tráfego amplifica. WA fecha.</p>
+  </div>
+
+  <div class="funil-wrapper">
+
+    <div class="funil-stage">
+      <div class="funil-num s1">1</div>
+      <div class="stage-label s1">Topo — Atração & Educação</div>
+      <h4>Conteúdo orgânico (Insta + Reels)</h4>
+      <p>Posiciona o dono como especialista. Atrai quem ainda não conhece.</p>
+      <ul class="content-list">
+        <li><strong>"Essência pura vs. diluída" —</strong> o que você está comprando sem saber</li>
+        <li><strong>"Por que perfume some rápido?" —</strong> explicação técnica simples</li>
+        <li><strong>"Como cheirar essência do jeito certo" —</strong> ritual do olfato</li>
+        <li><strong>"O que é fixação e por que importa?" —</strong> química simplificada</li>
+        <li><strong>Bastidores da manipulação —</strong> mostrar o processo ao vivo</li>
+        <li><strong>"Qual essência combina com você?" —</strong> quiz/orientação</li>
+      </ul>
+    </div>
+
+    <div class="funil-connector"><div class="funil-arrow">→</div></div>
+
+    <div class="funil-stage">
+      <div class="funil-num s2">2</div>
+      <div class="stage-label s2">Meio — Consideração & Prova</div>
+      <h4>Conteúdo de prova social + oferta</h4>
+      <p>Quem já conhece precisa de motivo pra agir.</p>
+      <ul class="content-list">
+        <li><strong>Depoimentos de clientes —</strong> antes/depois de comprar com a gente</li>
+        <li><strong>"Por que nosso preço é menor?" —</strong> transparência sobre origem</li>
+        <li><strong>Perfume personalizado ao vivo —</strong> cliente escolhendo na loja</li>
+        <li><strong>Comparação honesta —</strong> essência coração vs. HS com preço</li>
+        <li><strong>Oferta da semana —</strong> combo + urgência</li>
+      </ul>
+    </div>
+
+    <div class="funil-connector"><div class="funil-arrow">→</div></div>
+
+    <div class="funil-stage">
+      <div class="funil-num s3">3</div>
+      <div class="stage-label s3">Fundo — Conversão (WA)</div>
+      <h4>WhatsApp como canal de fechamento</h4>
+      <p>Quem chega aqui já está quente. Atendimento rápido fecha.</p>
+      <ul class="content-list">
+        <li><strong>Boas-vindas automática</strong> com cardápio de opções</li>
+        <li><strong>Script de qualificação</strong> — pra que vai usar? ambiente, carro, corpo?</li>
+        <li><strong>Oferta de upsell</strong> — "leva 2 por R$ 18"</li>
+        <li><strong>Agendamento de entrega</strong> ou visita à loja</li>
+        <li><strong>Pós-venda:</strong> pedir avaliação Google + foto usando o produto</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="callout" style="margin-top:20px">
+    <div class="callout-title">🎯 Posicionamento que resulta disso</div>
+    <div class="callout-content"><strong>"A única perfumaria de Salvador onde o próprio químico te explica o que você está comprando — e cobra o menor preço."</strong> Isso não é copy inventada. É o que eles realmente fazem. Autenticidade + autoridade + preço = combinação difícil de rebater.</div>
+  </div>
+
+  <div class="callout blue" style="margin-top:12px">
+    <div class="callout-title">📅 Cadência de conteúdo sugerida</div>
+    <div class="callout-content">
+      <strong>Feed (2x/semana):</strong> 1 educativo (topo) + 1 produto/oferta (meio) <br>
+      <strong>Stories (diário):</strong> bastidores, processo, resposta de dúvidas, depoimento rápido <br>
+      <strong>Reels (1x/semana):</strong> conteúdo educativo com gancho forte — esse é o de maior alcance orgânico <br>
+      <strong>GMN Posts (2x/semana):</strong> oferta + produto destaque
+    </div>
+  </div>
+</div>
+
+<!-- CRIATIVOS -->
+<div class="section" id="criativos">
+  <div class="section-header">
+    <div class="section-eyebrow">A peça que o público vê</div>
+    <h2 class="section-title">Matriz de criativos iniciais</h2>
+    <p class="section-desc">5 ângulos diferentes. Meta testa e descobre qual mensagem funciona pro público local. Renovar a cada 14–21 dias.</p>
+  </div>
+  <div class="creative-matrix">
+    <div class="creative-card">
+      <div class="creative-num">CRIATIVO 01</div>
+      <h4>Apresentação da loja</h4>
+      <div class="creative-block"><div class="label">Formato</div><div class="value">Imagem estática 1:1 e 9:16</div></div>
+      <div class="creative-block"><div class="label">Visual</div><div class="value">Fachada ou interior + produto âncora visível</div></div>
+      <div class="creative-block"><div class="label">Copy</div><div class="value"><em>"Você de Salvador conhece a Aroma Real? Essências a partir de R$ 10 com entrega em casa. Manda mensagem ✨"</em></div></div>
+      <div class="creative-block"><div class="label">CTA</div><div class="value">Enviar mensagem (WhatsApp)</div></div>
+    </div>
+    <div class="creative-card">
+      <div class="creative-num">CRIATIVO 02</div>
+      <h4>Tour rápido em vídeo</h4>
+      <div class="creative-block"><div class="label">Formato</div><div class="value">Vídeo vertical 15s · Stories/Reels</div></div>
+      <div class="creative-block"><div class="label">Roteiro</div><div class="value">3s gancho → 8s tour prateleiras → 4s endereço + CTA</div></div>
+      <div class="creative-block"><div class="label">Copy</div><div class="value"><em>"A maior variedade de essências do Novo Marotinho 🌿 Chama no Whats que a gente te ajuda a escolher."</em></div></div>
+      <div class="creative-block"><div class="label">Detalhe</div><div class="value">Legendas embedadas — 80% assiste sem som</div></div>
+    </div>
+    <div class="creative-card">
+      <div class="creative-num">CRIATIVO 03</div>
+      <h4>Carrossel de produtos top</h4>
+      <div class="creative-block"><div class="label">Formato</div><div class="value">Carrossel 5 cards · Feed</div></div>
+      <div class="creative-block"><div class="label">Estrutura</div><div class="value">Card 1: capa "Os + pedidos" · Cards 2-4: produto + preço · Card 5: CTA</div></div>
+      <div class="creative-block"><div class="label">Copy</div><div class="value"><em>"Os 5 aromas mais pedidos do mês 🔥 Manda mensagem pra reservar antes de acabar."</em></div></div>
+    </div>
+    <div class="creative-card">
+      <div class="creative-num">CRIATIVO 04</div>
+      <h4>Prova social — depoimento</h4>
+      <div class="creative-block"><div class="label">Formato</div><div class="value">Print de conversa WA (autorizado) ou vídeo curto de cliente</div></div>
+      <div class="creative-block"><div class="label">Copy</div><div class="value"><em>"Olha o que a [Nome] mandou depois de levar a Essência [X] pra casa 💛 É por isso que a gente faz o que faz."</em></div></div>
+      <div class="creative-block"><div class="label">Ação S1</div><div class="value">Pedir autorização de clientes que elogiam no WA — começar a coletar já</div></div>
+    </div>
+    <div class="creative-card">
+      <div class="creative-num">CRIATIVO 05</div>
+      <h4>Oferta com prazo</h4>
+      <div class="creative-block"><div class="label">Formato</div><div class="value">Imagem estática · Renovado a cada 14-21 dias</div></div>
+      <div class="creative-block"><div class="label">Copy</div><div class="value"><em>"Só essa semana: leve 2 essências por R$ 18 (válido até [data]). Manda mensagem que a gente separa."</em></div></div>
+      <div class="creative-block"><div class="label">Objetivo</div><div class="value">Urgência + elevação de ticket médio de R$ 10 → R$ 18</div></div>
+    </div>
+  </div>
+  <div class="callout success" style="margin-top:16px">
+    <div class="callout-title">🎯 Princípio do criativo local</div>
+    <div class="callout-content">Não tente fazer arte. Tente fazer <strong>verdade</strong>. Foto real da loja &gt; banco de imagens. Dono falando &gt; vídeo sem alma. Print real do WA &gt; depoimento fabricado. Autenticidade é a vantagem competitiva de quem não tem budget de produção.</div>
+  </div>
+</div>
+
+<!-- KPIs -->
+<div class="section" id="kpis">
+  <div class="section-header">
+    <div class="section-eyebrow">A régua do que importa</div>
+    <h2 class="section-title">Métricas — o que olhar e o que ignorar</h2>
+    <p class="section-desc">Métrica errada faz você decidir errado. Essenciais pagam o salário. Diagnósticas explicam o porquê. Vaidade só vicia.</p>
+  </div>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-name">Mensagens WA iniciadas</div>
+      <div class="metric-target">80–150/mês</div>
+      <div class="metric-desc">Volume de conversas vindas dos anúncios. Métrica primária — é o que o cliente sente no dia a dia.</div>
+      <span class="metric-tag essencial">Essencial</span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-name">Custo por mensagem (CPL)</div>
+      <div class="metric-target">R$ 4–10</div>
+      <div class="metric-desc">Quanto custou cada conversa. Acima de R$ 15 = problema. Abaixo de R$ 4 = excelente, escalar.</div>
+      <span class="metric-tag essencial">Essencial</span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-name">Faturamento mensal</div>
+      <div class="metric-target">R$ 12.000</div>
+      <div class="metric-desc">Meta de +20% sobre o baseline de R$ 10k. Coletado diretamente do cliente toda segunda.</div>
+      <span class="metric-tag essencial">Essencial</span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-name">Avaliações no Google</div>
+      <div class="metric-target">4 → 30+ em 90 dias</div>
+      <div class="metric-desc">Cresce com fluxo + script + QR no balcão. Composto — empilha mês a mês. Impacta SEO local.</div>
+      <span class="metric-tag essencial">Essencial</span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-name">CTR dos anúncios</div>
+      <div class="metric-target">&gt; 1,5%</div>
+      <div class="metric-desc">Indica se o criativo fisga. Abaixo de 1% = trocar criativo. Acima de 2% = pode escalar.</div>
+      <span class="metric-tag diagnostica">Diagnóstica</span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-name">Frequência</div>
+      <div class="metric-target">&lt; 3,5</div>
+      <div class="metric-desc">Quantas vezes a mesma pessoa viu. Acima de 4 = público saturado. Renovar criativo.</div>
+      <span class="metric-tag diagnostica">Diagnóstica</span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-name">Taxa conversa→venda WA</div>
+      <div class="metric-target">25–40%</div>
+      <div class="metric-desc">Baseline atual: ~37% (15 de 40/semana). Queda = problema no atendimento, não no anúncio.</div>
+      <span class="metric-tag diagnostica">Diagnóstica</span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-name">CPM</div>
+      <div class="metric-target">contexto</div>
+      <div class="metric-desc">Útil pra sentir se o leilão está caro. Não decide nada sozinho — só leitura comparativa.</div>
+      <span class="metric-tag diagnostica">Diagnóstica</span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-name">Curtidas, alcance, seguidores</div>
+      <div class="metric-target">ignorar</div>
+      <div class="metric-desc">Nenhuma dessas paga conta. Não otimize por elas. Servem só de "moral" pros donos.</div>
+      <span class="metric-tag vaidade">Vaidade</span>
+    </div>
+  </div>
+</div>
+
+<!-- SEMANA A SEMANA -->
+<div class="section" id="semanas">
+  <div class="section-header">
+    <div class="section-eyebrow">Execução</div>
+    <h2 class="section-title">Roadmap semana a semana</h2>
+    <p class="section-desc">Clique pra expandir. Cada semana tem entregas concretas, métricas a observar e ponto de decisão.</p>
+  </div>
+
+  <!-- S1 -->
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S1</div>
+        <div class="week-info"><h4>Semana 1 · Onboarding (18–24/mai)</h4><p>Sem anúncio ainda. Tudo é setup e coleta de acesso.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li><strong>Kickoff presencial</strong> — validar hipóteses, alinhar expectativas, tirar fotos se necessário</li>
+          <li>Filho cria Business Manager (acompanhar passo a passo)</li>
+          <li>Solicitar acesso Página FB + Conta de Anúncios + Instagram</li>
+          <li>Cliente cadastra cartão na conta de anúncios</li>
+          <li>GMN: adicionar Vinícius como gerente</li>
+          <li>Coletar 15-20 fotos (loja, prateleiras, produtos). Se faltar, fotografar com celular durante a visita</li>
+          <li>Mandar mensagem teste como cliente fantasma no WA — medir tempo de resposta real</li>
+          <li><strong>Reativação WA:</strong> montar primeira mensagem para a lista de 1.000 contatos</li>
+        </ul>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">📊 O que observar</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">Tempo resposta WA: <strong>baseline</strong></span>
+          <span class="kpi-pill">Visitas/dia na loja: <strong>baseline</strong></span>
+          <span class="kpi-pill">Avaliações Google: <strong>contar atual</strong></span>
+        </div>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">🚦 Decisão</div>
+        <div class="callout" style="margin:0">
+          <div class="callout-content">Se até sexta os acessos não estiverem resolvidos, a Semana 2 inteira atrasa. Comunicar no mesmo dia que travar.</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S2 -->
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S2</div>
+        <div class="week-info"><h4>Semana 2 · Produção (25–31/mai)</h4><p>Landing, criativos e GMN. Anúncio ainda não sobe.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li><strong>Instagram conectado ao BM</strong> — obrigatório para criar Custom Audience de engajamento</li>
+          <li><strong>5 criativos</strong> da matriz inicial produzidos (Canva + CapCut)</li>
+          <li><strong>GMN 100% configurado:</strong> categoria, horários, fotos (mínimo 10), descrição com termos locais</li>
+          <li>QR code de avaliação Google impresso e instalado no balcão</li>
+          <li>Script de coleta de avaliação treinado com Aleia</li>
+          <li><strong>Reativação WA:</strong> enviar mensagem para a lista. Começar a medir respostas</li>
+          <li>Estrutura de campanhas montada no Gerenciador (sem ativar ainda)</li>
+        </ul>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">📊 O que observar</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">Pixel instalado e disparando: <strong>sim/não</strong></span>
+          <span class="kpi-pill">Audience size público frio: <strong>≥ 100k</strong></span>
+          <span class="kpi-pill">Respostas WA da reativação: <strong>medir</strong></span>
+        </div>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">🚦 Decisão</div>
+        <div class="callout" style="margin:0">
+          <div class="callout-content">Se audience size &lt; 50k, ampliar raio pra 15km antes de subir. Se &gt; 500k, tá ok — Meta filtra com Advantage+.</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S3 -->
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S3</div>
+        <div class="week-info"><h4>Semana 3 · GO LIVE (01–07/jun)</h4><p>Primeiro anúncio no ar. Não mexer por 5 dias.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li><strong>Subir Campanha 1 (Mensagens)</strong> na segunda-feira de manhã</li>
+          <li>Orçamento inicial: R$ 28–30/dia (só C1 — sem landing, sem pixel)</li>
+          <li><strong>Não tocar por 5 dias</strong> — fase de aprendizado. Mexer reinicia o ciclo.</li>
+          <li>Tag obrigatória no WA: "meta ads" no nome do contato novo</li>
+          <li>Caderno no caixa: "como nos conheceu?" — anotação diária</li>
+          <li>Postagem no GMN dias 1, 4 e 7</li>
+          <li>Pedir 5 avaliações Google de clientes presentes na semana</li>
+        </ul>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">📊 O que observar (sem agir)</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">Mensagens chegando: <strong>15–30 na semana</strong></span>
+          <span class="kpi-pill">CPL inicial: <strong>R$ 5–12</strong></span>
+          <span class="kpi-pill">CTR por anúncio: <strong>≥ 1%</strong></span>
+          <span class="kpi-pill">Avaliações Google: <strong>+5</strong></span>
+        </div>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">🚦 Decisão</div>
+        <div class="callout danger" style="margin:0">
+          <div class="callout-content"><strong>Resista à tentação de mexer.</strong> Os 3 primeiros dias parecem ruins — é normal. Só interfira se: zero mensagens em 48h, ou CPL acima de R$ 25 por 3 dias seguidos.</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S4 -->
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S4</div>
+        <div class="week-info"><h4>Semana 4 · Primeira leitura (08–14/jun)</h4><p>Fim Fase 1. Relatório do mês 1.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li>Análise consolidada das 2 semanas de anúncio</li>
+          <li>Identificar criativo vencedor (maior CTR + menor CPL) e pausar o perdedor</li>
+          <li>Compilar feedback de Aleia: qualidade das mensagens — compradores ou curiosos?</li>
+          <li><strong>Relatório Mês 1:</strong> 3 frases de resumo + números + próximos passos. Enviar pelo WA na segunda.</li>
+          <li>Reunião de balanço 30 min (vídeo ou presencial)</li>
+        </ul>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">📊 Alvos Mês 1</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">Mensagens: <strong>40–80</strong></span>
+          <span class="kpi-pill">CPL médio: <strong>R$ 6–12</strong></span>
+          <span class="kpi-pill">Avaliações Google: <strong>10–18</strong></span>
+          <span class="kpi-pill">Visitas: <strong>+15–30%</strong></span>
+        </div>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">🚦 Decisão</div>
+        <div class="callout success" style="margin:0">
+          <div class="callout-content">70%+ dos alvos = continua plano original. Não bateu = revisar criativo e segmentação antes de Fase 2. Não esconder números ruins — antecipar é confiança.</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S5 -->
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S5</div>
+        <div class="week-info"><h4>Semana 5 · Início Fase 2 (15–21/jun)</h4><p>Otimização. Remarketing ativo.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li>Pausar criativo perdedor</li>
+          <li>Subir <strong>2 criativos novos</strong> no padrão do vencedor (mesmo formato, copy diferente)</li>
+          <li><strong>Ativar Campanha 3 (Remarketing)</strong> — Custom Audience: engajadores Insta + visitantes landing</li>
+          <li>Realocar orçamento pra conjunto vencedor</li>
+          <li>Pedir avaliação ativa de 5 clientes via WA (link direto)</li>
+        </ul>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">📊 O que observar</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">CPL agregado: <strong>queda de 10–20% vs S3-S4</strong></span>
+          <span class="kpi-pill">Frequência: <strong>&lt; 3,5</strong></span>
+          <span class="kpi-pill">CPL Remarketing: <strong>R$ 2–5</strong></span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S6-S7 condensadas -->
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S6</div>
+        <div class="week-info"><h4>Semana 6 · Refino fino (22–28/jun)</h4><p>Ajustes pequenos, alto impacto.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li>Análise de horários: quando o CPL é mais baixo? Considerar agendamento</li>
+          <li>Análise de placement: Feed vs Stories vs Reels — qual entrega mais barato?</li>
+          <li>Trocar copy do vencedor por variação (mesma imagem, copy nova) — teste isolado</li>
+          <li>Atualizar landing com depoimentos novos coletados</li>
+          <li><strong>Cliente fantasma de novo</strong> — testar se WA ainda responde rápido</li>
+          <li>Avaliações Google: meta acumulada ~20</li>
+        </ul>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S7</div>
+        <div class="week-info"><h4>Semana 7 · Renovação de criativo (29/jun–05/jul)</h4><p>Combate à fadiga visual.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li><strong>3 criativos novos</strong> entrando em rotação</li>
+          <li>1 vídeo novo da loja (UGC do dono ou cliente com autorização)</li>
+          <li>Pausar criativos com frequência &gt; 4</li>
+          <li>Começar a montar Custom Audience de clientes do WA (pra Lookalike no Mês 3)</li>
+        </ul>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S8 -->
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S8</div>
+        <div class="week-info"><h4>Semana 8 · Fechamento Fase 2 (06–12/jul)</h4><p>Relatório Mês 2. Comparativo.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li>Relatório Mês 2 com comparativo Mês 1 vs Mês 2</li>
+          <li>Reunião de balanço — donos presentes se possível</li>
+          <li>Apresentar plano Fase 3: mostrar números que justificam escalar orçamento</li>
+        </ul>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">📊 Alvos Mês 2</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">Mensagens: <strong>80–130</strong></span>
+          <span class="kpi-pill">CPL médio: <strong>R$ 5–9</strong></span>
+          <span class="kpi-pill">Avaliações: <strong>20–28</strong></span>
+          <span class="kpi-pill">Visitas: <strong>+25–45%</strong></span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S9 -->
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S9</div>
+        <div class="week-info"><h4>Semana 9 · Início Fase 3 — Escala (13–19/jul)</h4><p>Está vencendo? Sobe orçamento. Devagar.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li>+20% no conjunto vencedor</li>
+          <li><strong>Criar Lookalike 1%</strong> baseado em Custom Audience de clientes WA (se &gt; 100 contatos)</li>
+          <li>Subir Conjunto C: LAL 1% Salvador 25km</li>
+          <li>Postagem GMN com primeiro case de cliente (com permissão)</li>
+        </ul>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">📊 O que observar</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">LAL primeiros 7 dias: <strong>tolerar CPL 30% maior enquanto aprende</strong></span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S10-S12 condensadas -->
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S10</div>
+        <div class="week-info"><h4>Semana 10 · Sistema operando (20–26/jul)</h4><p>Rotina batida. Foco em consistência.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li>LAL virou? Mantém. Não virou? Tentar LAL 2% (mais amplo)</li>
+          <li>Vencedor pode chegar a 60% do orçamento total se justificar</li>
+          <li>3 criativos novos em produção (renovação cíclica)</li>
+          <li>Cliente fantasma de novo</li>
+          <li>Avaliações Google: meta 28+</li>
+        </ul>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S11</div>
+        <div class="week-info"><h4>Semana 11 · Preparação sazonal (27/jul–02/ago)</h4><p>Datas próximas? Esquentar agora.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li>Verificar data sazonal nas próximas 4 semanas</li>
+          <li>Se sim: <strong>criativo sazonal</strong> + ativar reserva de 10% pra boost</li>
+          <li>Postagem GMN temática</li>
+        </ul>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S13 -->
+  <div class="week-card">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-num">S13</div>
+        <div class="week-info"><h4>Semana 13 · Fechamento 90 dias (10–16/ago)</h4><p>Relatório final e próximos 90 dias.</p></div>
+      </div>
+      <span class="week-toggle">+</span>
+    </div>
+    <div class="week-body"><div class="week-content">
+      <div class="week-block">
+        <div class="week-block-title">🎯 Entregas</div>
+        <ul class="task-list">
+          <li><strong>Relatório dos 90 dias:</strong> Mês 1 vs Mês 2 vs Mês 3 + ROI calculado</li>
+          <li>Apresentação de renovação com proposta para os próximos 90 dias</li>
+          <li>Propor expansão: WhatsApp com automação básica, Google Ads, aumentar budget</li>
+          <li>Documentar o que funcionou e o que não funcionou — base pro próximo ciclo</li>
+        </ul>
+      </div>
+      <div class="week-block">
+        <div class="week-block-title">📊 Alvos 90 dias</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">Faturamento: <strong>R$ 12k+/mês</strong></span>
+          <span class="kpi-pill">Avaliações Google: <strong>30+</strong></span>
+          <span class="kpi-pill">CPL estabilizado: <strong>R$ 4–7</strong></span>
+          <span class="kpi-pill">WA msgs/mês: <strong>120–200</strong></span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+</div>
+
+<!-- RISCOS -->
+<div class="section" id="riscos">
+  <div class="section-header">
+    <div class="section-eyebrow">O que pode dar errado</div>
+    <h2 class="section-title">Mapa de riscos</h2>
+    <p class="section-desc">Mapear antes é barato. Descobrir no meio é caro.</p>
+  </div>
+  <div class="risk-grid">
+    <div class="risk-card">
+      <h4>Acessos não chegam <span class="risk-severity">ALTO</span></h4>
+      <p>BM não verifica, GMN não aprova, cartão recusado. Trava toda a operação de tráfego pago por 1-2 semanas.</p>
+      <div class="risk-mitigation"><strong>Plano</strong><span>Acompanhar passo a passo na S1. Ter alternativa: subir pelo perfil pessoal temporariamente se BM travar.</span></div>
+    </div>
+    <div class="risk-card">
+      <h4>CPL acima de R$ 15 sustentado <span class="risk-severity">ALTO</span></h4>
+      <p>Com R$ 900/mês, CPL de R$ 15 = apenas 60 mensagens. Insuficiente pra meta.</p>
+      <div class="risk-mitigation"><strong>Plano</strong><span>Trocar criativo imediatamente. Se persistir, revisitar segmentação. Não escalar enquanto não resolver.</span></div>
+    </div>
+    <div class="risk-card warning">
+      <h4>Tempo de resposta WA piora <span class="risk-severity">MÉDIO</span></h4>
+      <p>Volume aumenta com anúncios, Aleia não dá conta. Taxa de conversão cai silenciosamente.</p>
+      <div class="risk-mitigation"><strong>Plano</strong><span>Monitorar com cliente fantasma a cada 2 semanas. Propor mensagem de boas-vindas automática se piorar.</span></div>
+    </div>
+    <div class="risk-card warning">
+      <h4>Materiais visuais não chegam <span class="risk-severity">MÉDIO</span></h4>
+      <p>Sem fotos/logo/vídeos, criativos ficam fracos e CPL sobe.</p>
+      <div class="risk-mitigation"><strong>Plano</strong><span>Fotografar com celular na visita da S1. Um bom iPhone já resolve 80% do problema.</span></div>
+    </div>
+    <div class="risk-card medium">
+      <h4>Leads de baixa qualidade no WA <span class="risk-severity">BAIXO</span></h4>
+      <p>Muitas mensagens, poucas conversões. Criativo atraindo público errado.</p>
+      <div class="risk-mitigation"><strong>Plano</strong><span>Adicionar qualificador no anúncio ("essências a partir de R$ 10"). Se persistir, revisar segmentação geográfica.</span></div>
+    </div>
+    <div class="risk-card medium">
+      <h4>Conta de anúncios suspensa <span class="risk-severity">BAIXO</span></h4>
+      <p>Meta pode suspender conta nova por comportamento atípico nas primeiras semanas.</p>
+      <div class="risk-mitigation"><strong>Plano</strong><span>Subir orçamento devagar (não ir pra R$ 30/dia de repente). Documentar tudo pra recurso rápido se acontecer.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PLANO B -->
+<div class="section" id="planob">
+  <div class="section-header">
+    <div class="section-eyebrow">Se o plano A não funcionar</div>
+    <h2 class="section-title">Plano B</h2>
+    <p class="section-desc">Um gatilho claro pra cada cenário. Não improvisar na hora — decidir agora enquanto a cabeça está fria.</p>
+  </div>
+  <div class="planob-grid">
+    <div class="planob-card">
+      <div class="planob-trigger">GATILHO: CPL &gt; R$ 15 por 2 semanas</div>
+      <h4>Criativos não estão funcionando</h4>
+      <p>O anúncio não está prendendo o público ou a segmentação está errada.</p>
+      <div class="planob-action"><strong>Ação</strong>Pausar todos. Produzir 3 criativos completamente diferentes (formato, ângulo, copy). Testar com R$ 5/dia por 5 dias antes de escalar.</div>
+    </div>
+    <div class="planob-card">
+      <div class="planob-trigger">GATILHO: Mensagens chegam, vendas não sobem</div>
+      <h4>Gargalo no atendimento, não no anúncio</h4>
+      <p>CPL ok, volume ok, mas faturamento não move. O problema está na conversão dentro do WA.</p>
+      <div class="planob-action"><strong>Ação</strong>Fazer cliente fantasma em profundidade. Criar script simples de atendimento pra Aleia. Propor mensagem automática de boas-vindas.</div>
+    </div>
+    <div class="planob-card">
+      <div class="planob-trigger">GATILHO: Audience size &lt; 50k no Meta</div>
+      <h4>Público local muito pequeno pra otimizar</h4>
+      <p>Meta não consegue otimizar com público pequeno — CPL alto e sem melhora.</p>
+      <div class="planob-action"><strong>Ação</strong>Ampliar raio pra 20-25km. Considerar remover restrição de gênero (testar público feminino também). Ou migrar foco pra Google Ads local.</div>
+    </div>
+    <div class="planob-card">
+      <div class="planob-trigger">GATILHO: BM bloqueado por 2+ semanas</div>
+      <h4>Infraestrutura Meta inacessível</h4>
+      <p>Tráfego pago completamente travado sem perspectiva de desbloqueio rápido.</p>
+      <div class="planob-action"><strong>Ação</strong>Focar 100% em GMN + reativação da lista WA de 1.000 contatos. Iniciar Google Ads por conta separada enquanto resolve o Meta.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Aroma Real · Roadmap 90 dias · Início 2026-05-18 · Uso interno</p>
+  <p style="margin-top:6px">Atualizar painel de métricas toda segunda-feira ↑</p>
+</div>
+
+</div><!-- /container -->
+
+<script>
+// PROGRESS BAR
+const startDate = new Date('2026-05-18');
+const today = new Date();
+const daysDiff = Math.floor((today - startDate) / (1000*60*60*24));
+const days = Math.max(0, Math.min(90, daysDiff));
+const pct = (days / 90) * 100;
+
+document.getElementById('progress-fill').style.width = pct + '%';
+document.getElementById('progress-text').innerHTML =
+  days <= 0 ? 'Início em 18/05/2026' :
+  days >= 90 ? '<strong>90 dias concluídos</strong>' :
+  'Dia <strong>' + days + '</strong> de 90 — ' + (90-days) + ' dias restantes';
+
+if (days >= 60) {
+  document.getElementById('pm3').classList.replace('inactive','active');
+  document.getElementById('pm2').classList.replace('inactive','active');
+} else if (days >= 30) {
+  document.getElementById('pm2').classList.replace('inactive','active');
+}
+
+// WEEK TOGGLE
+function toggleWeek(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+
+// PENDÊNCIAS
+function togglePendencia(el) {
+  el.classList.toggle('done');
+  savePendencias();
+}
+function savePendencias() {
+  const states = {};
+  document.querySelectorAll('.pendencia-item').forEach(el => {
+    states[el.dataset.id] = el.classList.contains('done');
+  });
+  localStorage.setItem('ar_pendencias', JSON.stringify(states));
+}
+function loadPendencias() {
+  const saved = localStorage.getItem('ar_pendencias');
+  if (!saved) return;
+  const states = JSON.parse(saved);
+  document.querySelectorAll('.pendencia-item').forEach(el => {
+    if (states[el.dataset.id]) el.classList.add('done');
+  });
+}
+
+// MÉTRICAS
+function saveMetrics() {
+  const data = {
+    msgs: document.getElementById('m-msgs').value,
+    cpl: document.getElementById('m-cpl').value,
+    reviews: document.getElementById('m-reviews').value,
+    conv: document.getElementById('m-conv').value,
+    fat: document.getElementById('m-fat').value,
+    ctr: document.getElementById('m-ctr').value,
+    visits: document.getElementById('m-visits').value,
+    note: document.getElementById('m-note').value,
+    ts: new Date().toLocaleString('pt-BR')
+  };
+  localStorage.setItem('ar_metrics', JSON.stringify(data));
+  document.getElementById('last-saved').textContent = 'Salvo em ' + data.ts;
+  updateMetaLabels(data);
+}
+
+function loadMetrics() {
+  const saved = localStorage.getItem('ar_metrics');
+  if (!saved) return;
+  const data = JSON.parse(saved);
+  if (data.msgs) document.getElementById('m-msgs').value = data.msgs;
+  if (data.cpl) document.getElementById('m-cpl').value = data.cpl;
+  if (data.reviews) document.getElementById('m-reviews').value = data.reviews;
+  if (data.conv) document.getElementById('m-conv').value = data.conv;
+  if (data.fat) document.getElementById('m-fat').value = data.fat;
+  if (data.ctr) document.getElementById('m-ctr').value = data.ctr;
+  if (data.visits) document.getElementById('m-visits').value = data.visits;
+  if (data.note) document.getElementById('m-note').value = data.note;
+  if (data.ts) document.getElementById('last-saved').textContent = 'Salvo em ' + data.ts;
+  updateMetaLabels(data);
+}
+
+function updateMetaLabels(data) {
+  // CPL feedback
+  const cpl = parseFloat(data.cpl);
+  if (!isNaN(cpl)) {
+    const el = document.getElementById('m-cpl-meta');
+    if (cpl <= 4) { el.textContent = '✓ Excelente — pode escalar'; el.className = 'metric-input-meta green'; }
+    else if (cpl <= 10) { el.textContent = '✓ Dentro do alvo (R$ 4–10)'; el.className = 'metric-input-meta green'; }
+    else if (cpl <= 15) { el.textContent = '⚠️ Acima do alvo — otimizar'; el.className = 'metric-input-meta yellow'; }
+    else { el.textContent = '✗ Crítico — revisar criativo urgente'; el.className = 'metric-input-meta red'; }
+  }
+  // Faturamento feedback
+  const fat = parseFloat(String(data.fat).replace(/\./g,'').replace(',','.'));
+  if (!isNaN(fat)) {
+    const el = document.getElementById('m-fat-meta');
+    if (fat >= 12000) { el.textContent = '✓ Meta atingida (+20%)'; el.className = 'metric-input-meta green'; }
+    else if (fat >= 11000) { el.textContent = '→ Próximo da meta (R$ 12k)'; el.className = 'metric-input-meta yellow'; }
+    else { el.textContent = 'Alvo: R$ 12.000 (+20%)'; el.className = 'metric-input-meta'; }
+  }
+}
+
+// INIT
+window.onload = function() {
+  loadPendencias();
+  loadMetrics();
+};
+</script>
+</body>
+</html>

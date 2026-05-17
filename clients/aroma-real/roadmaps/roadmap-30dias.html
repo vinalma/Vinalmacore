@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap 30 dias + Plano de Estudos — Aroma Real</title>
+<style>
+:root {
+  --bg:#0a0e1a; --bg-card:#131829; --bg-card-2:#1a2038; --bg-elevated:#1f2742;
+  --accent:#d4a574; --accent-soft:#e8c89c; --gold:#c9a35a;
+  --blue:#5b8def; --purple:#a87dff; --teal:#2dd4bf;
+  --text:#ffffff; --text-dim:#9ca3b8; --text-muted:#5d6580;
+  --success:#4ade80; --warning:#fbbf24; --danger:#f87171;
+  --border:#232a44; --border-bright:#344066;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh;}
+.container{max-width:1100px;margin:0 auto;padding:32px 24px 80px;}
+
+/* NAV */
+.quick-nav{position:sticky;top:0;background:rgba(10,14,26,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 0;margin:-32px -24px 32px;z-index:50;}
+.quick-nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:4px;}
+.quick-nav a{color:var(--text-dim);text-decoration:none;padding:5px 11px;border-radius:8px;font-size:12px;white-space:nowrap;transition:all .2s;}
+.quick-nav a:hover{background:var(--bg-card);color:var(--accent);}
+
+/* HERO */
+.hero{background:radial-gradient(circle at 15% 0%,rgba(212,165,116,.14) 0%,transparent 50%),radial-gradient(circle at 85% 100%,rgba(45,212,191,.07) 0%,transparent 50%),linear-gradient(135deg,#131829 0%,#1a2038 100%);border:1px solid var(--border-bright);border-radius:24px;padding:44px;margin-bottom:32px;position:relative;overflow:hidden;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(212,165,116,.12);color:var(--accent);padding:5px 13px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:18px;}
+.hero h1{font-size:38px;line-height:1.1;margin-bottom:12px;font-weight:800;letter-spacing:-.8px;}
+.hero h1 .h-accent{background:linear-gradient(120deg,var(--accent) 0%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero h1 .h-blue{background:linear-gradient(120deg,var(--blue) 0%,var(--teal) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero .subtitle{color:var(--text-dim);font-size:15px;max-width:720px;line-height:1.6;}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px;padding-top:22px;border-top:1px solid var(--border-bright);}
+.hero-stat-value{font-size:22px;font-weight:800;color:var(--accent);line-height:1;}
+.hero-stat-label{font-size:11px;color:var(--text-muted);margin-top:5px;text-transform:uppercase;letter-spacing:.8px;}
+
+/* PROGRESS */
+.progress-section{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:22px 28px;margin-bottom:32px;}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.progress-label{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.2px;}
+.progress-days{font-size:13px;color:var(--text-dim);}
+.progress-days strong{color:var(--text);}
+.progress-track{height:10px;background:var(--bg-elevated);border-radius:6px;overflow:hidden;margin-bottom:10px;}
+.progress-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--gold));}
+.progress-phases{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;}
+.phase-marker{text-align:center;padding:7px 4px;border-radius:8px;font-size:10px;}
+.phase-marker.active{background:rgba(212,165,116,.1);border:1px solid rgba(212,165,116,.3);}
+.phase-marker.inactive{background:var(--bg-elevated);border:1px solid var(--border);color:var(--text-muted);}
+.phase-marker .pm-num{font-weight:800;color:var(--accent);font-size:12px;display:block;}
+.phase-marker.inactive .pm-num{color:var(--text-muted);}
+
+/* SECTION */
+.section{margin-bottom:48px;}
+.section-header{margin-bottom:22px;}
+.section-eyebrow{display:inline-block;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px;}
+.section-title{font-size:26px;font-weight:800;letter-spacing:-.4px;margin-bottom:7px;}
+.section-desc{color:var(--text-dim);font-size:14px;max-width:760px;}
+
+/* TIMELINE VISUAL */
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--border-bright);}
+.timeline-item{position:relative;margin-bottom:8px;}
+.timeline-item::before{content:'';position:absolute;left:-22px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);}
+.timeline-item.pre::before{background:var(--text-muted);}
+.timeline-item.live::before{background:var(--success);box-shadow:0 0 8px rgba(74,222,128,.5);}
+
+/* DAY CARDS */
+.day-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden;transition:border-color .2s;}
+.day-card:hover{border-color:var(--border-bright);}
+.day-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;user-select:none;}
+.day-header-left{display:flex;align-items:center;gap:12px;}
+.day-badge{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;flex-shrink:0;}
+.badge-pre{background:rgba(93,101,128,.2);color:var(--text-muted);}
+.badge-s1{background:rgba(212,165,116,.15);color:var(--accent);}
+.badge-s2{background:rgba(91,141,239,.15);color:var(--blue);}
+.badge-s3{background:rgba(74,222,128,.15);color:var(--success);}
+.badge-s4{background:rgba(168,125,255,.15);color:var(--purple);}
+.day-info h4{font-size:15px;margin-bottom:2px;}
+.day-info p{font-size:13px;color:var(--text-dim);}
+.day-toggle{color:var(--accent);font-size:20px;transition:transform .3s;flex-shrink:0;}
+.day-card.open .day-toggle{transform:rotate(45deg);}
+.day-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.day-card.open .day-body{max-height:4000px;}
+.day-content{padding:0 20px 20px;border-top:1px solid var(--border);padding-top:16px;}
+.day-block{margin-bottom:16px;}
+.day-block:last-child{margin-bottom:0;}
+.day-block-title{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;}
+.task-list{list-style:none;}
+.task-list li{padding:5px 0;display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text-dim);border-bottom:1px dashed var(--border);}
+.task-list li:last-child{border-bottom:none;}
+.task-list li::before{content:'▸';color:var(--accent);flex-shrink:0;font-weight:700;}
+.task-list strong{color:var(--text);}
+.kpi-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;}
+.kpi-pill{background:var(--bg-elevated);border:1px solid var(--border-bright);padding:4px 10px;border-radius:8px;font-size:12px;color:var(--text-dim);}
+.kpi-pill strong{color:var(--accent);}
+
+/* CALLOUT */
+.callout{background:linear-gradient(135deg,rgba(212,165,116,.08) 0%,rgba(212,165,116,.02) 100%);border-left:4px solid var(--accent);border-radius:8px;padding:13px 17px;margin:12px 0;}
+.callout-title{font-weight:700;color:var(--accent);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.callout-content{font-size:13px;color:var(--text-dim);}
+.callout.danger{background:linear-gradient(135deg,rgba(248,113,113,.08) 0%,transparent 100%);border-left-color:var(--danger);}
+.callout.danger .callout-title{color:var(--danger);}
+.callout.success{background:linear-gradient(135deg,rgba(74,222,128,.08) 0%,transparent 100%);border-left-color:var(--success);}
+.callout.success .callout-title{color:var(--success);}
+.callout.blue{background:linear-gradient(135deg,rgba(91,141,239,.08) 0%,transparent 100%);border-left-color:var(--blue);}
+.callout.blue .callout-title{color:var(--blue);}
+
+/* ESTUDO */
+.study-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.study-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.study-header{padding:18px 20px 14px;border-bottom:1px solid var(--border);}
+.study-num{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
+.study-header h4{font-size:16px;margin-bottom:4px;}
+.study-header p{font-size:13px;color:var(--text-dim);}
+.study-priority{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:8px;}
+.p-critico{background:rgba(248,113,113,.15);color:var(--danger);}
+.p-alto{background:rgba(251,191,36,.15);color:var(--warning);}
+.p-medio{background:rgba(91,141,239,.15);color:var(--blue);}
+.study-body{padding:16px 20px;}
+.topic-list{list-style:none;}
+.topic-list li{font-size:13px;color:var(--text-dim);padding:6px 0;border-bottom:1px dashed var(--border);display:flex;align-items:flex-start;gap:8px;}
+.topic-list li:last-child{border-bottom:none;}
+.topic-list li::before{content:'○';color:var(--accent);flex-shrink:0;font-size:11px;margin-top:2px;}
+.topic-list strong{color:var(--text);}
+.resources{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+.resources-label{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;}
+.resource-item{display:flex;flex-direction:column;gap:2px;margin-bottom:8px;padding:9px 12px;background:var(--bg-elevated);border-radius:8px;}
+.resource-item:last-child{margin-bottom:0;}
+.resource-name{font-size:13px;font-weight:600;color:var(--text);}
+.resource-where{font-size:12px;color:var(--accent-soft);}
+.resource-note{font-size:11px;color:var(--text-muted);}
+.resource-link{font-size:12px;color:var(--blue);word-break:break-all;}
+
+/* CRONOGRAMA ESTUDOS */
+.study-schedule{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.week-study{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:18px;}
+.week-study-num{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.week-study h4{font-size:14px;margin-bottom:10px;}
+.study-items{list-style:none;}
+.study-items li{font-size:13px;color:var(--text-dim);padding:4px 0;display:flex;gap:7px;}
+.study-items li::before{content:'→';color:var(--accent);flex-shrink:0;}
+
+/* CHECKLIST DIÁRIO */
+.daily-checklist{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:20px;}
+.check-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border);cursor:pointer;user-select:none;}
+.check-row:last-child{border-bottom:none;}
+.check-box{width:18px;height:18px;border:2px solid var(--border-bright);border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all .2s;}
+.check-row.done .check-box{background:var(--success);border-color:var(--success);}
+.check-row.done .check-box::after{content:'✓';color:#000;font-size:10px;font-weight:800;}
+.check-row.done .check-text{text-decoration:line-through;color:var(--text-muted);}
+.check-text{font-size:13px;color:var(--text-dim);}
+.check-text strong{color:var(--text);display:block;font-size:13px;}
+
+.footer{margin-top:56px;padding-top:26px;border-top:1px solid var(--border);text-align:center;color:var(--text-muted);font-size:13px;}
+
+@media(max-width:900px){
+  .hero h1{font-size:26px;}
+  .hero-stats{grid-template-columns:repeat(2,1fr);}
+  .study-grid,.study-schedule{grid-template-columns:1fr;}
+  .progress-phases{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- NAV -->
+<nav class="quick-nav">
+  <div class="quick-nav-inner">
+    <a href="#progresso">📈 Progresso</a>
+    <a href="#execucao">📅 Execução</a>
+    <a href="#checklist">✅ Checklist</a>
+    <a href="#estudos">🎓 Estudos</a>
+    <a href="#cronograma-estudos">🗓️ Quando estudar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-tag">🔒 PLANO INTERNO · VINICIUS</span>
+  <h1>Primeiros <span class="h-accent">30 dias</span><br>+ Plano de <span class="h-blue">Estudos</span></h1>
+  <p class="subtitle">Do dia 12/05 até 11/06. Inclui a semana de pré-onboarding (antes do cliente começar), o que executar dia a dia, e o que estudar pra aumentar resultado e capacidade técnica.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-value">12/05</div>
+      <div class="hero-stat-label">Início (hoje)</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">18/05</div>
+      <div class="hero-stat-label">Cliente começa</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">01/06</div>
+      <div class="hero-stat-label">Anúncio no ar</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">11/06</div>
+      <div class="hero-stat-label">Fim dos 30 dias</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESSO -->
+<div class="progress-section" id="progresso">
+  <div class="progress-header">
+    <div class="progress-label">⏱️ Progresso</div>
+    <div class="progress-days" id="progress-text">—</div>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+  <div class="progress-phases">
+    <div class="phase-marker active" id="pm0">
+      <span class="pm-num">Prep</span>
+      12–17/mai
+    </div>
+    <div class="phase-marker inactive" id="pm1">
+      <span class="pm-num">S1</span>
+      18–24/mai
+    </div>
+    <div class="phase-marker inactive" id="pm2">
+      <span class="pm-num">S2</span>
+      25–31/mai
+    </div>
+    <div class="phase-marker inactive" id="pm3">
+      <span class="pm-num">S3</span>
+      01–07/jun
+    </div>
+    <div class="phase-marker inactive" id="pm4">
+      <span class="pm-num">S4</span>
+      08–11/jun
+    </div>
+  </div>
+</div>
+
+<!-- EXECUÇÃO -->
+<div class="section" id="execucao">
+  <div class="section-header">
+    <div class="section-eyebrow">O que fazer cada semana</div>
+    <h2 class="section-title">Execução dia a dia</h2>
+    <p class="section-desc">5 blocos. Clique pra expandir. Cada um tem entregas, métricas e decisão da semana.</p>
+  </div>
+
+  <!-- PRÉ -->
+  <div class="day-card open">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div class="day-header-left">
+        <span class="day-badge badge-pre">Pré-onboarding</span>
+        <div class="day-info">
+          <h4>12–17 de maio · Você antes do cliente</h4>
+          <p>6 dias pra chegar no kickoff preparado. Nenhum imprevisto é desculpa.</p>
+        </div>
+      </div>
+      <span class="day-toggle">+</span>
+    </div>
+    <div class="day-body"><div class="day-content">
+      <div class="day-block">
+        <div class="day-block-title">📋 Preparação técnica</div>
+        <ul class="task-list">
+          <li><strong>Criar seu Business Manager</strong> (se ainda não tiver) — business.facebook.com</li>
+          <li><strong>Verificar BM com documento</strong> — pode levar 1-3 dias, fazer imediatamente</li>
+          <li>Instalar Meta Ads Manager no celular — acompanhar campanha pelo app</li>
+          <li><strong>Pesquisar concorrentes na Biblioteca de Anúncios:</strong> "perfumaria Salvador", "essência Salvador", "aromatizador Salvador" — anotar o que estão fazendo (ou a ausência deles)</li>
+          <li>Verificar Google Maps: buscar "perfumaria" em Salvador e ver como o GMN da Aroma Real aparece hoje</li>
+          <li>Checar o Instagram deles: quantos seguidores, engajamento médio, último post, stories ativos</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">✍️ Preparação de conteúdo</div>
+        <ul class="task-list">
+          <li><strong>Rascunhar 5 criativos</strong> no Canva (templates) — já deixar estrutura pronta antes de ter as fotos</li>
+          <li>Escrever a mensagem de reativação da lista WA de 1.000 contatos (revisar 3 vezes antes de enviar)</li>
+          <li>Montar o script de kickoff: lista de perguntas que ainda faltam validar</li>
+          <li>Escrever 3 copies de anúncio (versão 1, 2, 3) — uma pra cada ângulo: preço, expertise do químico, essência pura</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">🎓 Estudo desta semana</div>
+        <ul class="task-list">
+          <li>Assistir tutorial de Click-to-WhatsApp no Meta Ads (ver seção de estudos abaixo)</li>
+          <li>Entender Custom Audience de engajamento Instagram — como criar e quando usar</li>
+          <li>Ler sobre Advantage+ Audience: por que funciona, quando não funciona</li>
+        </ul>
+      </div>
+      <div class="callout" style="margin-top:0">
+        <div class="callout-title">🎯 Objetivo desta semana</div>
+        <div class="callout-content">Chegar na reunião de kickoff (18/05) com tudo preparado. BM verificado, copies rascunhadas, perguntas listadas, concorrência mapeada. Cliente não pode esperar por você ficando à deriva.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S1 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div class="day-header-left">
+        <span class="day-badge badge-s1">Semana 1</span>
+        <div class="day-info">
+          <h4>18–24 de maio · Kickoff e coleta de acessos</h4>
+          <p>Primeiro contato. Sem anúncio. Sem pressa. Só setup.</p>
+        </div>
+      </div>
+      <span class="day-toggle">+</span>
+    </div>
+    <div class="day-body"><div class="day-content">
+      <div class="day-block">
+        <div class="day-block-title">🎯 Prioridade 1 — Reunião de kickoff (18/mai)</div>
+        <ul class="task-list">
+          <li>Apresentar o plano dos 30 dias em linguagem simples — sem jargão</li>
+          <li>Coletar o que não está no dossiê: top 10 produtos com preço, redes sociais exatas, número WA Business</li>
+          <li><strong>Fotografar na hora:</strong> se não tiver fotos prontas, tirar com celular durante a visita. Mínimo 15.</li>
+          <li>Combinar prazo para logo e vídeos (máximo 5 dias após kickoff)</li>
+          <li>Pedir acesso à conta do Facebook e Instagram via BM</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">🔧 Técnico da semana</div>
+        <ul class="task-list">
+          <li><strong>João (filho) cria o Business Manager</strong> — acompanhar remotamente se necessário</li>
+          <li>Solicitar acesso como Anunciante à conta de anúncios deles</li>
+          <li><strong>GMN:</strong> confirmar acesso de gerente, ver o estado atual (fotos, categoria, horário)</li>
+          <li>Instalar WhatsApp Business se não tiver — configurar resposta automática básica</li>
+          <li>Mandar mensagem teste como "cliente fantasma" — medir tempo de resposta real</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">📱 Instagram — primeira semana gerenciada</div>
+        <ul class="task-list">
+          <li>Postar 1 Reels educativo usando o gancho do químico: <em>"Você sabe a diferença entre essência pura e diluída?"</em></li>
+          <li>2 stories: bastidor da loja + produto destaque</li>
+          <li>Responder todos os comentários e DMs atrasados</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">📊 Baseline a registrar</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">Avaliações Google: <strong>contar</strong></span>
+          <span class="kpi-pill">Seguidores Instagram: <strong>anotar</strong></span>
+          <span class="kpi-pill">Msgs WA/semana: <strong>40 (baseline)</strong></span>
+          <span class="kpi-pill">Visitas/semana: <strong>~100 (baseline)</strong></span>
+        </div>
+      </div>
+      <div class="callout danger" style="margin-top:0">
+        <div class="callout-title">⚠️ Se qualquer acesso travar</div>
+        <div class="callout-content">Comunicar no mesmo dia. Não deixar pra semana seguinte. BM bloqueado ou cartão recusado atrasa tudo. Ter plano B: subir pelo perfil pessoal temporariamente enquanto resolve.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S2 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div class="day-header-left">
+        <span class="day-badge badge-s2">Semana 2</span>
+        <div class="day-info">
+          <h4>25–31 de maio · Produção e reativação WA</h4>
+          <p>Tudo pronto antes do go live. Anúncio ainda não sobe.</p>
+        </div>
+      </div>
+      <span class="day-toggle">+</span>
+    </div>
+    <div class="day-body"><div class="day-content">
+      <div class="day-block">
+        <div class="day-block-title">🎨 Criativos — entregar essa semana</div>
+        <ul class="task-list">
+          <li><strong>Criativo 1:</strong> Imagem fachada/interior — copy ângulo local ("Você de Salvador conhece a Aroma Real?")</li>
+          <li><strong>Criativo 2:</strong> Vídeo 15s tour da loja — legendas embedadas (CapCut)</li>
+          <li><strong>Criativo 3:</strong> Carrossel top 5 produtos — "Os mais pedidos do mês"</li>
+          <li><strong>Criativo 4:</strong> UGC/depoimento — print de WA autorizado ou vídeo de cliente</li>
+          <li><strong>Criativo 5:</strong> Oferta com prazo — "2 essências por R$ 18 até sexta"</li>
+          <li>Formato: 1:1 pra feed + 9:16 pra stories em todos os estáticos</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">📲 Reativação da lista WA (1.000 contatos)</div>
+        <ul class="task-list">
+          <li>Enviar mensagem de reativação — tom casual, não comercial: <em>"Oi [nome], tá chegando novidade na Aroma Real essa semana. Quer ser avisado primeiro? 🌿"</em></li>
+          <li>Medir: quantos respondem, quantos pedem produto, quantos compram</li>
+          <li><strong>Meta realista:</strong> 5-10% de resposta = 50-100 conversas. Mesmo 10 vendas a R$ 26 = R$ 260 sem gastar em anúncio</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">🗺️ Google Meu Negócio — deixar 100% configurado</div>
+        <ul class="task-list">
+          <li>Categoria principal: "Loja de artigos de aromaterapia" ou "Perfumaria"</li>
+          <li>Descrição: incluir "essência pura", "menor preço Salvador", "químico especializado", "entrega em casa"</li>
+          <li>Fotos: mínimo 10 (fachada, interior, produtos, equipe)</li>
+          <li>Horário: segunda-sexta 8-18h, sábado 8-16h</li>
+          <li>QR code impresso e colado no balcão para avaliação</li>
+          <li>Primeira postagem GMN: produto destaque da semana</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">🏗️ Campanha — estrutura montada (não ativar ainda)</div>
+        <ul class="task-list">
+          <li>Campanha 1 criada no Gerenciador com objetivo Mensagens (Click-to-WhatsApp)</li>
+          <li>Conjunto A: Advantage+ Audience, Salvador 10km, 25-55 anos, homens</li>
+          <li>Conjunto B: Interesses (aromaterapia, perfumaria, decoração), mesmo geo</li>
+          <li>Verificar: audience size Conjunto A ≥ 100k. Se menor, ampliar raio pra 15km</li>
+          <li>Mensagem pré-configurada no WA: "Oi! Vi vocês no Instagram. Como funciona?"</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">📱 Instagram</div>
+        <ul class="task-list">
+          <li>1 Reels educativo: <em>"Essência pura vs. diluída — qual você está comprando?"</em> (dono fala)</li>
+          <li>1 post feed: produto mais vendido com preço</li>
+          <li>Stories diários: processo de manipulação, bastidores, depoimento</li>
+        </ul>
+      </div>
+      <div class="callout blue" style="margin-top:0">
+        <div class="callout-title">📅 Regra desta semana</div>
+        <div class="callout-content">Nada sobe (campanha) antes de tudo estar revisado: criativos aprovados, BM verificado, cartão cadastrado, número WA testado, GMN configurado. Checklist completo antes de apertar o botão.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S3 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div class="day-header-left">
+        <span class="day-badge badge-s3">Semana 3</span>
+        <div class="day-info">
+          <h4>01–07 de junho · GO LIVE — primeira semana de anúncio</h4>
+          <p>Subiu. Agora é observar, não mexer.</p>
+        </div>
+      </div>
+      <span class="day-toggle">+</span>
+    </div>
+    <div class="day-body"><div class="day-content">
+      <div class="day-block">
+        <div class="day-block-title">🚀 Segunda-feira 01/06 — subir tudo</div>
+        <ul class="task-list">
+          <li>Ativar Campanha 1, Conjunto A e B — orçamento R$ 28-30/dia total (CBO)</li>
+          <li>Confirmar que mensagem WA está chegando e sendo respondida por Aleia</li>
+          <li>Tag obrigatória: todo contato novo via anúncio → anotar "meta ads" no nome no WA</li>
+          <li>Caderno no caixa: "como soube de nós?" — anotar todo dia</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">🛑 Dias 1–5 — NÃO TOCAR NOS ANÚNCIOS</div>
+        <ul class="task-list">
+          <li>Olhar apenas: está rodando? Está gastando? Está chegando mensagem?</li>
+          <li>Meta está calibrando o público — mexer reinicia o aprendizado e joga o dinheiro fora</li>
+          <li><strong>Única exceção:</strong> zero mensagens em 48h corridas OU CPL acima de R$ 25 por 3 dias</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">🗺️ GMN — manter ativo</div>
+        <ul class="task-list">
+          <li>Postagem GMN: dias 1, 4 e 7 da semana</li>
+          <li>Pedir avaliação Google pra 5 clientes que aparecerem na loja</li>
+          <li>Responder todas as avaliações recebidas (mesmo as antigas)</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">📊 O que observar (sem agir ainda)</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">Mensagens/semana via ads: <strong>15–30</span></kpi-pill>
+          <span class="kpi-pill">CPL: <strong>R$ 5–12</span></kpi-pill>
+          <span class="kpi-pill">CTR: <strong>≥ 1%</span></kpi-pill>
+          <span class="kpi-pill">Avaliações Google: <strong>+5</span></kpi-pill>
+        </div>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">📱 Instagram</div>
+        <ul class="task-list">
+          <li>1 Reels: <em>"Por que nosso preço é menor que o da concorrência?"</em> — dono explica</li>
+          <li>1 post feed: oferta da semana com prazo</li>
+          <li>Stories: 1 depoimento de cliente + bastidores do dia</li>
+        </ul>
+      </div>
+      <div class="callout danger" style="margin-top:0">
+        <div class="callout-title">⚠️ Maior erro desta semana</div>
+        <div class="callout-content">Olhar o CPL no dia 2 e achar que está caro. Os primeiros 3 dias são sempre mais caros. É normal. Só interfira se depois de 5 dias o CPL ainda estiver acima de R$ 20.</div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- S4 PARCIAL -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div class="day-header-left">
+        <span class="day-badge badge-s4">Semana 4 (parcial)</span>
+        <div class="day-info">
+          <h4>08–11 de junho · Primeiras leituras</h4>
+          <p>Fim dos 30 dias. Hora de ler os dados e preparar o relatório.</p>
+        </div>
+      </div>
+      <span class="day-toggle">+</span>
+    </div>
+    <div class="day-body"><div class="day-content">
+      <div class="day-block">
+        <div class="day-block-title">📊 Análise dos dados (segunda 08/06)</div>
+        <ul class="task-list">
+          <li>Qual criativo teve maior CTR? Qual teve menor CPL? → esse é o vencedor</li>
+          <li>Qual conjunto performou melhor — Advantage+ ou Interesses?</li>
+          <li>Qualidade das mensagens WA: foram compradores ou curiosos? Perguntar pra Aleia</li>
+          <li>Quantas avaliações Google foram coletadas? Qual a nota atual?</li>
+          <li>Faturamento da última semana vs. semana equivalente do mês anterior</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">📨 Relatório Mês 1 — enviar segunda-feira 08/06</div>
+        <ul class="task-list">
+          <li><strong>Formato:</strong> 3 frases de resumo + tabela de números + 3 próximos passos</li>
+          <li>Não encher de dados — cliente quer saber: funcionou? O que vem por aí?</li>
+          <li>Enviar pelo WA em formato de imagem ou PDF simples</li>
+          <li>Reunião de balanço (30 min) — vídeo ou presencial</li>
+        </ul>
+      </div>
+      <div class="day-block">
+        <div class="day-block-title">📊 Alvos mínimos pra considerar Mês 1 ok</div>
+        <div class="kpi-row">
+          <span class="kpi-pill">Mensagens via ads: <strong>40–80</strong></span>
+          <span class="kpi-pill">CPL médio: <strong>≤ R$ 12</strong></span>
+          <span class="kpi-pill">Avaliações Google: <strong>10+</strong></span>
+          <span class="kpi-pill">Reativação WA: <strong>50+ respostas</strong></span>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+</div>
+
+<!-- CHECKLIST SEMANAL -->
+<div class="section" id="checklist">
+  <div class="section-header">
+    <div class="section-eyebrow">Rotina fixa</div>
+    <h2 class="section-title">Checklist semanal recorrente</h2>
+    <p class="section-desc">Fazer toda segunda-feira. Clique pra marcar. Salvo localmente.</p>
+  </div>
+  <div class="daily-checklist" id="weekly-checklist">
+    <div class="check-row" onclick="toggleCheck(this)" data-id="c1">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Atualizar painel de métricas</strong>CPL, mensagens, avaliações, faturamento — preencher no roadmap 90 dias</div>
+    </div>
+    <div class="check-row" onclick="toggleCheck(this)" data-id="c2">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Verificar frequência dos anúncios</strong>Se acima de 3,5 → renovar criativo</div>
+    </div>
+    <div class="check-row" onclick="toggleCheck(this)" data-id="c3">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Checar CTR por anúncio</strong>Abaixo de 1% por 7 dias → candidato a pausar</div>
+    </div>
+    <div class="check-row" onclick="toggleCheck(this)" data-id="c4">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Responder avaliações novas no Google</strong>Sempre responder — positivas e negativas</div>
+    </div>
+    <div class="check-row" onclick="toggleCheck(this)" data-id="c5">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Postagem GMN</strong>2x por semana mínimo — produto destaque ou oferta</div>
+    </div>
+    <div class="check-row" onclick="toggleCheck(this)" data-id="c6">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Cliente fantasma no WA</strong>1x por semana — checar tempo de resposta da Aleia</div>
+    </div>
+    <div class="check-row" onclick="toggleCheck(this)" data-id="c7">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Revisar Reels da semana</strong>Engajamento acima do normal? Usar o gancho como base pro próximo criativo de anúncio</div>
+    </div>
+    <div class="check-row" onclick="toggleCheck(this)" data-id="c8">
+      <div class="check-box"></div>
+      <div class="check-text"><strong>Pedir 5 avaliações Google</strong>Via WA pra clientes que compraram essa semana — link direto</div>
+    </div>
+  </div>
+</div>
+
+<!-- ESTUDOS -->
+<div class="section" id="estudos">
+  <div class="section-header">
+    <div class="section-eyebrow">O que aprender pra entregar mais resultado</div>
+    <h2 class="section-title">Plano de estudos técnicos</h2>
+    <p class="section-desc">Específico pra este cliente e este momento. Prioridade do que vai impactar o resultado agora — não o que é interessante em teoria.</p>
+  </div>
+  <div class="study-grid">
+
+    <!-- 1 -->
+    <div class="study-card">
+      <div class="study-header">
+        <div class="study-num">ESTUDO 01</div>
+        <h4>Meta Ads — Click to WhatsApp</h4>
+        <p>A campanha principal desse cliente. Entender a fundo como funciona, o que otimizar e quando não mexer.</p>
+        <span class="study-priority p-critico">🔴 Crítico — estudar esta semana</span>
+      </div>
+      <div class="study-body">
+        <ul class="topic-list">
+          <li><strong>Objetivo Mensagens vs. Engajamento</strong> — qual usar e por quê</li>
+          <li><strong>CBO vs. ABO</strong> — quando usar orçamento na campanha vs. no conjunto</li>
+          <li><strong>Fase de aprendizado:</strong> o que é, quanto dura, o que quebra</li>
+          <li><strong>Advantage+ Audience:</strong> como funciona, quando ajuda, quando prejudica</li>
+          <li><strong>Mensagem de abertura WA:</strong> como configurar a mensagem pré-preenchida</li>
+          <li><strong>Como ler o Gerenciador:</strong> colunas que importam — CPM, CPL, CTR, frequência</li>
+        </ul>
+        <div class="resources">
+          <div class="resources-label">Onde encontrar</div>
+          <div class="resource-item">
+            <span class="resource-name">Meta Blueprint — PT-BR</span>
+            <span class="resource-link">business.facebook.com/business/learn</span>
+            <span class="resource-note">Plataforma oficial em português. Fazer: "Introdução à publicidade na Meta" + "Anúncios de mensagens". Gratuito e com certificação.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Gabriel Gruber — YouTube</span>
+            <span class="resource-where">youtube.com/@GabrielGruber</span>
+            <span class="resource-note">Melhor canal BR pra Meta Ads com foco em negócios físicos e tráfego local. Assistir a playlist de campanhas de mensagem e Click-to-WhatsApp.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Pedro Sobral — YouTube</span>
+            <span class="resource-where">youtube.com/@PedroSobral</span>
+            <span class="resource-note">Referência BR pra estrutura de campanhas, CBO vs ABO e leitura de métricas. Buscar: "Advantage+ audience" e "fase de aprendizado Meta".</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Rodolfo Benfica — YouTube</span>
+            <span class="resource-where">YouTube: buscar "Rodolfo Benfica tráfego pago"</span>
+            <span class="resource-note">Ótimo pra campanhas de mensagem e WhatsApp. Didático, foco em pequenos negócios e mercado local brasileiro.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="study-card">
+      <div class="study-header">
+        <div class="study-num">ESTUDO 02</div>
+        <h4>Custom Audiences — Engajamento Instagram</h4>
+        <p>O remarketing desse cliente não usa pixel — usa engajamento. Entender como criar, segmentar e usar corretamente.</p>
+        <span class="study-priority p-critico">🔴 Crítico — antes da Fase 2</span>
+      </div>
+      <div class="study-body">
+        <ul class="topic-list">
+          <li><strong>Tipos de Custom Audience de engajamento:</strong> post, Reels, visita ao perfil, DM</li>
+          <li><strong>Janelas de tempo:</strong> 30, 60, 90 dias — qual usar pra quê</li>
+          <li><strong>Como criar uma Custom Audience</strong> no Gerenciador passo a passo</li>
+          <li><strong>Lookalike Audience:</strong> o que é, quando faz sentido (mínimo 100 pessoas na fonte)</li>
+          <li><strong>Excluir públicos:</strong> excluir quem já comprou pra não gastar com quem já é cliente</li>
+        </ul>
+        <div class="resources">
+          <div class="resources-label">Onde encontrar</div>
+          <div class="resource-item">
+            <span class="resource-name">Meta Blueprint — Públicos Personalizados (PT-BR)</span>
+            <span class="resource-link">business.facebook.com/business/learn</span>
+            <span class="resource-note">Módulo "Públicos personalizados e semelhantes". Fazer antes de ativar a Campanha 2. Interface em português.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Pedro Sobral — Públicos no Meta Ads</span>
+            <span class="resource-where">youtube.com/@PedroSobral → buscar "públicos personalizados"</span>
+            <span class="resource-note">Tem vídeos específicos sobre Custom Audience de engajamento do Instagram. Mostram o Gerenciador ao vivo, passo a passo.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Gabriel Gruber — Remarketing sem pixel</span>
+            <span class="resource-where">youtube.com/@GabrielGruber → buscar "remarketing instagram"</span>
+            <span class="resource-note">Aborda especificamente campanhas de remarketing usando engajamento — exatamente o que você vai usar pra Aroma Real.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="study-card">
+      <div class="study-header">
+        <div class="study-num">ESTUDO 03</div>
+        <h4>Criativos para tráfego local — copy + visual</h4>
+        <p>O anúncio é o único ponto de contato antes da conversa. Copy fraca = CPL alto. Copy boa = CPL baixo.</p>
+        <span class="study-priority p-alto">🟡 Alto — antes de subir os anúncios</span>
+      </div>
+      <div class="study-body">
+        <ul class="topic-list">
+          <li><strong>Estrutura do gancho (hook):</strong> os 3 primeiros segundos decidem tudo</li>
+          <li><strong>Fórmulas de copy local:</strong> AIDA, PAS (Problema-Agitação-Solução) adaptada pra varejo</li>
+          <li><strong>Copy de anúncio de mensagem:</strong> o texto deve fazer a pergunta que o cliente vai responder no WA</li>
+          <li><strong>Canva — atalhos de produção:</strong> templates, brand kit, resize automático 1:1→9:16</li>
+          <li><strong>CapCut — legendas automáticas:</strong> como usar pra vídeo vertical com legenda embedada</li>
+        </ul>
+        <div class="resources">
+          <div class="resources-label">Onde encontrar</div>
+          <div class="resource-item">
+            <span class="resource-name">Rafael Camargo — YouTube + Livro</span>
+            <span class="resource-where">youtube.com/@RafaelCamargo → buscar "copy para anúncios"</span>
+            <span class="resource-note">Principal referência BR em copywriting. Canal gratuito no YouTube com conteúdo direto ao ponto. Livro "A Bíblia do Copy" (Amazon BR) — o mais completo em português sobre copy de resposta direta.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Paulo Maccedo — YouTube</span>
+            <span class="resource-where">youtube.com/@PauloMaccedo</span>
+            <span class="resource-note">Copy focado em mercado brasileiro, muito prático. Buscar: "como escrever anúncio que vende" e "copy para negócio local". Tom direto, sem enrolação.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Leandro Ladeira — YouTube</span>
+            <span class="resource-where">youtube.com/@LeandroLadeira</span>
+            <span class="resource-note">Especialista em copy de resposta direta no Brasil. Buscar: "gancho de anúncio" e "copy persuasiva". Ótimo pra entender estrutura PAS e AIDA adaptada ao contexto BR.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Canva — Tutoriais em português</span>
+            <span class="resource-link">canva.com/learn</span>
+            <span class="resource-note">Interface e tutoriais disponíveis em PT-BR. Foco em: resize automático 1:1→9:16, Brand Kit e templates de anúncio para Stories.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="study-card">
+      <div class="study-header">
+        <div class="study-num">ESTUDO 04</div>
+        <h4>Google Meu Negócio (SEO local)</h4>
+        <p>GMN bem feito traz cliente que já quer comprar — intenção de compra altíssima, sem custo por clique.</p>
+        <span class="study-priority p-alto">🟡 Alto — antes do kickoff</span>
+      </div>
+      <div class="study-body">
+        <ul class="topic-list">
+          <li><strong>Fatores de ranking local:</strong> relevância, distância, proeminência</li>
+          <li><strong>Categorias GMN:</strong> como escolher a principal e secundárias corretamente</li>
+          <li><strong>Fotos que rankeiam melhor:</strong> quantidade, qualidade, frequência de upload</li>
+          <li><strong>Posts GMN:</strong> frequência ideal, o que escrever, como adicionar oferta com prazo</li>
+          <li><strong>Estratégia de avaliações:</strong> como pedir sem violar os termos do Google</li>
+          <li><strong>Resposta a avaliações:</strong> como responder críticas sem se prejudicar</li>
+        </ul>
+        <div class="resources">
+          <div class="resources-label">Onde encontrar</div>
+          <div class="resource-item">
+            <span class="resource-name">Neil Patel Brasil — Blog e YouTube</span>
+            <span class="resource-where">neilpatel.com/br e youtube.com/@NeilPatelBrasil</span>
+            <span class="resource-note">Conteúdo completo em PT-BR sobre SEO local e Google Meu Negócio. Buscar: "como otimizar Google Meu Negócio" e "SEO local para pequenas empresas". Gratuito.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Agência Tupiniquim — Blog</span>
+            <span class="resource-where">agenciatupiniquim.com.br/blog</span>
+            <span class="resource-note">Blog BR com guias práticos sobre GMN. Buscar: "Google Meu Negócio completo" — tem artigos com passo a passo da interface atual em português.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Central de Ajuda do Google Perfil da Empresa (PT-BR)</span>
+            <span class="resource-link">support.google.com/business — selecionar idioma PT-BR</span>
+            <span class="resource-note">Documentação oficial em português. Ler: "Adicionar ou editar fotos" e "Criar posts no Perfil da Empresa". Sempre atualizado com a interface mais recente.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="study-card">
+      <div class="study-header">
+        <div class="study-num">ESTUDO 05</div>
+        <h4>Reels e conteúdo educativo — roteiro e gancho</h4>
+        <p>A autoridade do químico vai virar Reels. Precisar saber estruturar roteiro curto que educa e retém.</p>
+        <span class="study-priority p-alto">🟡 Alto — semana 1</span>
+      </div>
+      <div class="study-body">
+        <ul class="topic-list">
+          <li><strong>Estrutura do Reels de autoridade:</strong> gancho (0-3s) → problema (3-8s) → solução com expertise (8-25s) → CTA (últimos 3s)</li>
+          <li><strong>Gancho em texto na tela:</strong> aparecer nos primeiros 0,5 segundos — retém quem assiste sem som</li>
+          <li><strong>Falar pra câmera:</strong> como orientar o dono pra gravar sem ficar robótico</li>
+          <li><strong>Frequência ideal de Reels:</strong> 1x/semana pra conta pequena com consistência</li>
+          <li><strong>Reutilizar Reels como criativo de anúncio:</strong> testar Reels orgânico que engajou como dark post</li>
+        </ul>
+        <div class="resources">
+          <div class="resources-label">Onde encontrar</div>
+          <div class="resource-item">
+            <span class="resource-name">Camila Porto — YouTube</span>
+            <span class="resource-where">youtube.com/@CamilaPorto</span>
+            <span class="resource-note">Maior referência BR em Instagram para negócios. Canal completo em português com conteúdo sobre Reels, roteiro, gancho e estratégia para marcas locais. Buscar: "como fazer Reels que engaja" e "roteiro para Reels educativo".</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Mil Grau — YouTube e Podcast</span>
+            <span class="resource-where">YouTube: buscar "Mil Grau conteúdo digital"</span>
+            <span class="resource-note">Referência BR em estratégia de conteúdo orgânico. Ótimo pra entender posicionamento de autoridade via conteúdo — exatamente o que o dono químico vai fazer.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">CapCut — interface em português</span>
+            <span class="resource-where">App CapCut (iOS/Android) + YouTube: "CapCut tutorial PT-BR"</span>
+            <span class="resource-note">Interface totalmente em português. Focar em: legenda automática, corte por fala, templates verticais 9:16. Buscar tutoriais BR no YouTube — tem muito conteúdo gratuito e atualizado.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="study-card">
+      <div class="study-header">
+        <div class="study-num">ESTUDO 06</div>
+        <h4>Leitura de dados — Meta Ads Manager</h4>
+        <p>Saber ler os dados é saber tomar decisões. Dado lido errado = otimização errada.</p>
+        <span class="study-priority p-medio">🔵 Médio — durante as campanhas</span>
+      </div>
+      <div class="study-body">
+        <ul class="topic-list">
+          <li><strong>Colunas essenciais:</strong> CPM, CPL (custo por resultado), CTR (clique no link), frequência, alcance</li>
+          <li><strong>Diferença entre CTR (todos) e CTR (clique no link):</strong> qual realmente importa</li>
+          <li><strong>Como criar uma visualização customizada</strong> no Gerenciador com só as colunas que importam</li>
+          <li><strong>Quando comparar conjuntos:</strong> só comparar após 7 dias e mínimo R$ 50 gastos cada</li>
+          <li><strong>Attribution window:</strong> o que significa "1 dia após clique" vs. "7 dias"</li>
+        </ul>
+        <div class="resources">
+          <div class="resources-label">Onde encontrar</div>
+          <div class="resource-item">
+            <span class="resource-name">Meta Blueprint — Métricas (PT-BR)</span>
+            <span class="resource-link">business.facebook.com/business/learn</span>
+            <span class="resource-note">Módulo "Medir o desempenho dos anúncios" em português. Fazer logo após subir a primeira campanha — você já vai ter dados reais pra aplicar o que aprendeu.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Pedro Sobral — Leitura de Métricas</span>
+            <span class="resource-where">youtube.com/@PedroSobral → buscar "métricas Meta Ads"</span>
+            <span class="resource-note">Explica em português como montar a visualização customizada no Gerenciador, quais colunas ativar e como comparar conjuntos de forma estatisticamente válida.</span>
+          </div>
+          <div class="resource-item">
+            <span class="resource-name">Gabriel Gruber — Análise de Campanha</span>
+            <span class="resource-where">youtube.com/@GabrielGruber → buscar "analisar campanha Meta"</span>
+            <span class="resource-note">Mostra ao vivo como ele analisa uma campanha real no Gerenciador. Ótimo pra entender o raciocínio de otimização — CPL alto, o que fazer; CTR baixo, o que trocar.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CRONOGRAMA ESTUDOS -->
+<div class="section" id="cronograma-estudos">
+  <div class="section-header">
+    <div class="section-eyebrow">Quando encaixar o estudo</div>
+    <h2 class="section-title">Cronograma de estudos nos 30 dias</h2>
+    <p class="section-desc">30-45 min por dia. Estudo antes de precisar usar — não durante a crise.</p>
+  </div>
+
+  <div class="callout blue" style="margin-bottom:20px">
+    <div class="callout-title">📐 Regra de estudo</div>
+    <div class="callout-content">Não estudar tudo de uma vez. Estudar o que vai usar nos próximos 7 dias. Aprender fazendo é mais eficiente que aprender antes de fazer — mas aprender depois de errar é o mais caro de todos.</div>
+  </div>
+
+  <div class="study-schedule">
+    <div class="week-study">
+      <div class="week-study-num">Semana pré (12–17/mai)</div>
+      <h4>Fundação técnica</h4>
+      <ul class="study-items">
+        <li>Meta Blueprint — Introdução (2h)</li>
+        <li>Meta Blueprint — Anúncios de Mensagem (1h)</li>
+        <li>Gabriel Gruber — playlist Click-to-WA</li>
+        <li>Google Meu Negócio básico (1h)</li>
+        <li>Canva — resize e brand kit (30min)</li>
+      </ul>
+    </div>
+    <div class="week-study">
+      <div class="week-study-num">Semana 1 (18–24/mai)</div>
+      <h4>Conteúdo e GMN</h4>
+      <ul class="study-items">
+        <li>Estrutura de Reels educativo</li>
+        <li>Copy de anúncio local (hook + CTA)</li>
+        <li>GMN — fotos, posts, avaliações</li>
+        <li>CapCut — legenda automática</li>
+      </ul>
+    </div>
+    <div class="week-study">
+      <div class="week-study-num">Semanas 2-3 (25/mai–07/jun)</div>
+      <h4>Leitura de dados e remarketing</h4>
+      <ul class="study-items">
+        <li>Meta Blueprint — Custom Audiences</li>
+        <li>Métricas: CPL, CTR, frequência</li>
+        <li>Como comparar conjuntos corretamente</li>
+        <li>Pedro Sobral — análise de campanha no Gerenciador</li>
+        <li>"A Bíblia do Copy" — Rafael Camargo (caps. copy direta)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Aroma Real · Roadmap 30 dias + Estudos · Início 12/05/2026</p>
+  <p style="margin-top:6px">→ <a href="roadmap-90dias.html" style="color:var(--accent);text-decoration:none;">Ver Roadmap 90 dias completo</a></p>
+</div>
+
+</div>
+
+<script>
+// PROGRESS
+const start = new Date('2026-05-12');
+const end = new Date('2026-06-11');
+const today = new Date();
+const total = (end - start) / (1000*60*60*24);
+const elapsed = Math.max(0, Math.min(total, (today - start) / (1000*60*60*24)));
+const pct = (elapsed / total) * 100;
+
+document.getElementById('progress-fill').style.width = pct + '%';
+const remaining = Math.max(0, Math.ceil(total - elapsed));
+document.getElementById('progress-text').innerHTML =
+  elapsed <= 0 ? 'Início hoje' :
+  remaining <= 0 ? '<strong>30 dias concluídos</strong>' :
+  'Dia <strong>' + Math.floor(elapsed) + '</strong> de 30 — <strong>' + remaining + '</strong> dias restantes';
+
+// Phase markers
+const d = Math.floor(elapsed);
+if (d >= 27) document.getElementById('pm4').classList.replace('inactive','active');
+if (d >= 20) document.getElementById('pm3').classList.replace('inactive','active');
+if (d >= 13) document.getElementById('pm2').classList.replace('inactive','active');
+if (d >= 6)  document.getElementById('pm1').classList.replace('inactive','active');
+
+// TOGGLE DAYS
+function toggleDay(header) {
+  header.parentElement.classList.toggle('open');
+}
+
+// CHECKLIST
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  const states = {};
+  document.querySelectorAll('#weekly-checklist .check-row').forEach(r => {
+    states[r.dataset.id] = r.classList.contains('done');
+  });
+  localStorage.setItem('ar_checklist', JSON.stringify(states));
+}
+const savedCheck = localStorage.getItem('ar_checklist');
+if (savedCheck) {
+  const states = JSON.parse(savedCheck);
+  document.querySelectorAll('#weekly-checklist .check-row').forEach(r => {
+    if (states[r.dataset.id]) r.classList.add('done');
+  });
+}
+</script>
+</body>
+</html>
