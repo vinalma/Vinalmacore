@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Conteúdo — Felipe Fraga</title>
+<style>
+  :root {
+    --ink:    #120B05;
+    --bark:   #4A2410;
+    --terra:  #A85C2A;
+    --amber:  #C47A3A;
+    --sand:   #D8C4A4;
+    --linen:  #EDE3D0;
+    --cream:  #F6EFE2;
+    --warm:   #FBF7F0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--warm);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    background: var(--bark);
+    display: flex;
+    gap: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--terra);
+  }
+  nav a {
+    color: var(--sand);
+    text-decoration: none;
+    padding: 14px 24px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    transition: background .2s, color .2s;
+  }
+  nav a:hover, nav a.active { background: var(--terra); color: var(--cream); }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--bark);
+    color: var(--cream);
+    padding: 52px 64px 44px;
+    border-bottom: 3px solid var(--terra);
+  }
+  header .label {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+  header h1 {
+    font-size: 36px;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  header p {
+    font-size: 14px;
+    color: var(--sand);
+    font-family: Arial, sans-serif;
+    font-style: italic;
+  }
+
+  /* ── LAYOUT ── */
+  main { max-width: 960px; margin: 0 auto; padding: 48px 32px 80px; }
+
+  section { margin-bottom: 72px; }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: normal;
+    color: var(--bark);
+    border-bottom: 2px solid var(--terra);
+    padding-bottom: 10px;
+    margin-bottom: 32px;
+  }
+  .section-title span {
+    color: var(--terra);
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-right: 12px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--cream);
+    border: 1px solid var(--linen);
+    border-left: 4px solid var(--terra);
+    border-radius: 2px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .card-num {
+    background: var(--terra);
+    color: var(--cream);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+    margin-top: 3px;
+  }
+  .card h3 {
+    font-size: 18px;
+    font-weight: normal;
+    color: var(--bark);
+    line-height: 1.3;
+  }
+  .card .subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: var(--terra);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  /* ── SCRIPT ── */
+  .script-block {
+    margin: 14px 0;
+  }
+  .script-block .tag {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .script-block .content {
+    background: var(--linen);
+    border-left: 3px solid var(--amber);
+    padding: 12px 16px;
+    font-style: italic;
+    color: var(--bark);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .script-block .note {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #888;
+    margin-top: 6px;
+  }
+
+  /* ── SLIDES ── */
+  .slides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .slide-card {
+    background: var(--linen);
+    border: 1px solid var(--sand);
+    border-radius: 2px;
+    padding: 14px 16px;
+  }
+  .slide-card .slide-num {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 6px;
+  }
+  .slide-card .slide-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--bark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .slide-card .slide-copy {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .slide-card.capa {
+    background: var(--bark);
+    border-color: var(--terra);
+  }
+  .slide-card.capa .slide-num { color: var(--amber); }
+  .slide-card.capa .slide-title { color: var(--cream); font-size: 15px; }
+  .slide-card.capa .slide-copy { color: var(--sand); }
+  .slide-card.encerramento {
+    background: var(--terra);
+    border-color: var(--bark);
+  }
+  .slide-card.encerramento .slide-num { color: var(--linen); }
+  .slide-card.encerramento .slide-title { color: var(--cream); }
+  .slide-card.encerramento .slide-copy { color: var(--linen); }
+
+  /* ── CRIATIVO ── */
+  .criativo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .criativo-item {
+    background: var(--cream);
+    border: 1px solid var(--linen);
+    padding: 20px;
+  }
+  .criativo-item h4 {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 10px;
+  }
+  .criativo-item p {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .color-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .color-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    color: var(--bark);
+  }
+  .color-chip .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,.1);
+  }
+
+  /* ── CALENDÁRIO ── */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--bark);
+    color: var(--cream);
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--linen);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: var(--cream); }
+  .tag-video {
+    display: inline-block;
+    background: var(--terra);
+    color: var(--cream);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-right: 6px;
+  }
+  .tag-post {
+    display: inline-block;
+    background: var(--bark);
+    color: var(--sand);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-right: 6px;
+  }
+
+  /* ── SEPARADOR ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--linen);
+    margin: 32px 0;
+  }
+
+  @media print {
+    nav { display: none; }
+    .card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="label">Plano de Execução de Conteúdo</div>
+  <h1>Felipe Fraga Arquitetura</h1>
+  <p>@felipefraga.arq &nbsp;·&nbsp; Instagram &nbsp;·&nbsp; Maio 2026</p>
+</header>
+
+<nav>
+  <a href="#videos">Vídeos</a>
+  <a href="#carrosseis">Carrosséis</a>
+  <a href="#criativos">Criativos</a>
+  <a href="#calendario">Calendário</a>
+</nav>
+
+<main>
+
+<!-- ══════════ VÍDEOS ══════════ -->
+<section id="videos">
+  <h2 class="section-title"><span>01</span>Roteiros de Vídeo</h2>
+
+  <!-- VÍDEO 1 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Vídeo 01</div>
+      <h3>"O ambiente que você tem fala quem você acha que é"</h3>
+    </div>
+    <p class="subtitle">Posicionamento · Reels · 45–60s</p>
+
+    <div class="script-block">
+      <div class="tag">Cenário / Setup</div>
+      <div class="content">Ateliê ou obra em andamento. Roupa em tom caramelo ou off-white. Câmera próxima, olhando direto para a lente. Luz quente lateral.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Gancho — 0 a 3s</div>
+      <div class="content">"Eu entro num espaço e consigo ler a história de quem mora ali."</div>
+      <div class="note">Falar devagar, com segurança. Sem introdução, sem "olá". Direto.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Desenvolvimento — 3 a 45s</div>
+      <div class="content">"Os materiais que alguém escolheu, a forma como a luz entra, os detalhes que parecem pequenos mas que ninguém coloca por acidente — eles dizem tudo sobre quem vive ali.<br><br>
+      O problema é quando esse ambiente conta uma história que a pessoa não quer contar. Quando o espaço grita genérico enquanto quem mora nele tem personalidade, história, memória.<br><br>
+      Arquitetura de verdade não é sobre transformar um imóvel em algo bonito. É sobre fazer com que um espaço te represente. Que quando alguém entre na sua casa, sinta quem você é — mesmo antes de te conhecer.<br><br>
+      É isso que eu faço. Projetos com histórias, com memórias, com afeto."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">CTA — 45 a 55s</div>
+      <div class="content">"Se você sente que o seu espaço ainda não te representa — a gente pode mudar isso. Link na bio."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">B-roll sugerido</div>
+      <div class="content">Mão passando sobre material / detalhe de marcenaria / foto de projeto em renderização / mesa de trabalho com prancheta</div>
+    </div>
+  </div>
+
+  <!-- VÍDEO 2 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Vídeo 02</div>
+      <h3>"Por que eu não aceito qualquer projeto"</h3>
+    </div>
+    <p class="subtitle">Qualificação · Reels · 45–60s</p>
+
+    <div class="script-block">
+      <div class="tag">Cenário / Setup</div>
+      <div class="content">Sentado, postura relaxada mas firme. Fundo com elemento de projeto (planta na parede, moodboard, prateleira de referências). Tom de conversa direta.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Gancho — 0 a 3s</div>
+      <div class="content">"Eu poderia pegar mais clientes. Escolho não fazer isso — e vou te explicar por que isso é bom pra você."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Desenvolvimento — 3 a 50s</div>
+      <div class="content">"A maioria dos arquitetos tenta atender todo tipo de projeto. Eu não faço isso.<br><br>
+      Não porque eu seja arrogante. Mas porque aprendi — cedo e na prática — que quando um profissional tenta agradar a todos, ele termina não servindo bem a ninguém.<br><br>
+      Já peguei projeto por precisar do valor. E entreguei um trabalho que não era o meu melhor porque não era o projeto certo pra mim. Aprendi a lição.<br><br>
+      Hoje, antes de qualquer projeto, eu me pergunto: esse cliente quer um espaço com identidade, ou quer um espaço bonito pra mostrar? Porque são clientes completamente diferentes — e eu funciono muito melhor com o primeiro tipo.<br><br>
+      O cliente certo pra mim é aquele que sabe que um projeto de qualidade não se faz em 30 dias. Que entende que a decisão mais cara é a tomada com pressa. Que não está buscando o menor preço — está buscando o resultado mais certo.<br><br>
+      Se você é essa pessoa, a gente tem muito a conversar. Se não é — tudo bem também. Mas provavelmente tem alguém mais adequado pra você do que eu."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">CTA — 50 a 58s</div>
+      <div class="content">"Me chama no direct ou acessa o link na bio."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">B-roll sugerido</div>
+      <div class="content">Folheando caderno de projetos / selecionando amostras de material / planta em mesa com régua</div>
+    </div>
+  </div>
+
+  <!-- VÍDEO 3 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Vídeo 03</div>
+      <h3>"O que ninguém te conta antes de reformar um imóvel caro"</h3>
+    </div>
+    <p class="subtitle">Educação + Conversão · Reels · 50–65s</p>
+
+    <div class="script-block">
+      <div class="tag">Cenário / Setup</div>
+      <div class="content">Em pé, mais dinâmico. Pode ser na rua em frente a um edifício, ou dentro de uma obra. Tom de consultor, não de vendedor.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Gancho — 0 a 3s</div>
+      <div class="content">"Todo mundo fala de custo por metro quadrado. Ninguém fala sobre o custo de fazer errado."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Desenvolvimento — 3 a 55s</div>
+      <div class="content">"Três erros que eu vejo acontecer em reformas de padrão alto:<br><br>
+      <strong>Primeiro:</strong> contratar o acabamento antes de ter o projeto. Parece que economiza tempo. Na prática, você engessa as possibilidades e paga mais caro no final.<br><br>
+      <strong>Segundo:</strong> subestimar o prazo. Uma reforma bem feita demora. Não porque o profissional é lento — mas porque cada decisão tomada com calma vale meses de satisfação depois.<br><br>
+      <strong>Terceiro:</strong> achar que o arquiteto é opcional. O arquiteto não está lá só pra fazer o projeto bonito no papel. Está lá pra coordenar, prever os problemas antes que aconteçam e garantir que cada real investido faça sentido no resultado final.<br><br>
+      Esses três erros juntos podem transformar um projeto de sonho num arrependimento caro."</div>
+      <div class="note">Falar os três erros com pausa entre cada um. Pode usar dedos pra enumerar.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">CTA — 55 a 65s</div>
+      <div class="content">"Se você tá planejando uma reforma e quer fazer direito desde o começo — me chama. Primeira conversa é sem compromisso."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">B-roll sugerido</div>
+      <div class="content">Detalhe de acabamento sendo instalado / planta técnica em detalhe / reunião de briefing / amostra de material sendo escolhida</div>
+    </div>
+  </div>
+
+  <!-- VÍDEO 4 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Vídeo 04</div>
+      <h3>"O projeto que mais me ensinou — e não é o que você imagina"</h3>
+    </div>
+    <p class="subtitle">Humanização · Reels · 55–70s</p>
+
+    <div class="script-block">
+      <div class="tag">Cenário / Setup</div>
+      <div class="content">Sentado confortavelmente, luz quente. O mais íntimo dos quatro. Tom de história, não de aula. Pode ter uma foto do projeto referido na mão ou na tela atrás.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Gancho — 0 a 3s</div>
+      <div class="content">"O projeto que mais me ensinou até hoje não é o mais caro que já fiz. Nem o maior."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Desenvolvimento — 3 a 60s</div>
+      <div class="content">"Era um apartamento pequeno, num bairro residencial de Salvador. O cliente tinha morado fora por anos, voltou pra Bahia, e queria recomeçar — mas em casa de verdade.<br><br>
+      O briefing começou sobre metragem, layout, orçamento. Mas quando a gente foi mais fundo, o que ele realmente queria era um lugar que se parecesse com a infância dele. Com as cores das casas do centro histórico. Com a textura do artesanato que a avó colecionava. Com a leveza que ele não encontrava em apartamento nenhum.<br><br>
+      A gente usou azulejos num padrão específico — não pra ser bonitinho, mas porque aquele padrão era idêntico ao da casa da avó dele. Colocamos uma obra de um artista baiano que ele nunca tinha conseguido expor porque nenhum espaço anterior aguentava a peça.<br><br>
+      O apartamento ficou colorido. Cheio de textura. Completamente fora do que estava na moda.<br><br>
+      E completamente dele.<br><br>
+      Quando ele me chamou pra ver o resultado e disse 'agora eu consigo respirar nesse lugar' — foi aí que eu entendi o que arquitetura pode realmente fazer por uma pessoa. Não é sobre o imóvel. É sobre quem vai viver nele.<br><br>
+      É isso que a assinatura FF significa pra mim."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">CTA — 60 a 68s</div>
+      <div class="content">"Se você quer saber mais sobre como eu trabalho — link na bio."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">B-roll sugerido</div>
+      <div class="content">Fotos do projeto citado / detalhe de arte ou objeto decorativo / Felipe olhando para um projeto / close nas mãos folheando moodboard</div>
+    </div>
+  </div>
+  <!-- VÍDEO 5 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Vídeo 05</div>
+      <h3>"O que acontece antes de você ver o projeto"</h3>
+    </div>
+    <p class="subtitle">Processo · Bastidores · Reels · 50–65s</p>
+
+    <div class="script-block">
+      <div class="tag">Cenário / Setup</div>
+      <div class="content">Mesa de trabalho com caderno, amostras de material, tela com referências. Câmera em plano médio, mostrando o ambiente de trabalho. Tom de conversa natural, sem roteiro decorado.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Gancho — 0 a 3s</div>
+      <div class="content">"A parte mais importante do meu trabalho não aparece em nenhuma foto de projeto."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Desenvolvimento — 3 a 55s</div>
+      <div class="content">"Todo mundo vê o render. O ambiente finalizado. O antes e depois.<br><br>
+      Ninguém vê as três horas de briefing onde eu pergunto coisas que parecem não ter nada a ver com arquitetura: o que você faz quando chega em casa e quer descansar de verdade? Você prefere silêncio ou movimento ao redor? Tem algum lugar no mundo onde você se sentiu completamente em casa?<br><br>
+      Ninguém vê o caderno cheio de referências que eu reúno antes de desenhar a primeira linha. As amostras de material que eu testo com a luz real do ambiente, não com a foto do catálogo.<br><br>
+      Ninguém vê as vezes que eu desenhei e joguei fora porque estava tecnicamente correto mas não estava certo pra aquela pessoa.<br><br>
+      Essa parte invisível é o que faz a diferença entre um projeto bonito e um projeto verdadeiro. É onde o meu trabalho de verdade acontece."</div>
+      <div class="note">Durante o desenvolvimento, pode mostrar o caderno, as amostras, a tela com referências — deixar o B-roll trabalhar junto com a voz.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">CTA — 55 a 63s</div>
+      <div class="content">"Se você quer entender melhor como esse processo funciona — link na bio."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">B-roll sugerido</div>
+      <div class="content">Mãos escrevendo no caderno / amostras de material na mesa / tela com moodboard / close em régua sobre planta / riscar e recomeçar</div>
+    </div>
+  </div>
+
+  <!-- VÍDEO 6 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Vídeo 06</div>
+      <h3>"Quando me perguntam se é caro contratar um arquiteto"</h3>
+    </div>
+    <p class="subtitle">Objeção de Preço · Conversão · Reels · 45–60s</p>
+
+    <div class="script-block">
+      <div class="tag">Cenário / Setup</div>
+      <div class="content">Em pé, braços levemente cruzados ou mão no queixo. Tom direto, levemente divertido — não defensivo. A pergunta no gancho já cria identificação imediata.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Gancho — 0 a 3s</div>
+      <div class="content">"Eu ouço muito isso: 'arquiteto é caro.' E eu entendo de onde vem."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Desenvolvimento — 3 a 52s</div>
+      <div class="content">"Contratar um arquiteto tem um custo. Não contratar também tem — só que esse segundo aparece depois, quando você menos quer lidar com ele.<br><br>
+      Já vi clientes que economizaram os honorários do arquiteto e gastaram o dobro refazendo decisões de obra que um profissional teria evitado. Já vi reformas que atrasaram meses porque não havia projeto executivo pra orientar os fornecedores.<br><br>
+      O que a maioria das pessoas não calcula: o arquiteto não é uma despesa a mais no projeto. Ele é o que faz o dinheiro que você já vai gastar chegar onde deveria chegar.<br><br>
+      Dito isso — tem arquiteto caro e tem arquiteto com alto valor. São coisas diferentes. E cabe a você entender qual é qual antes de decidir."</div>
+      <div class="note">Pausa antes da última frase. É a mais importante.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">CTA — 52 a 60s</div>
+      <div class="content">"Se quiser entender como eu trabalho e o que está incluso — me chama. Sem compromisso."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">B-roll sugerido</div>
+      <div class="content">Detalhe de acabamento bem executado / planta técnica com anotações / Felipe em reunião de obra / material de qualidade sendo instalado</div>
+    </div>
+  </div>
+
+  <!-- VÍDEO 7 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Vídeo 07</div>
+      <h3>"Por que Salvador aparece em todos os meus projetos"</h3>
+    </div>
+    <p class="subtitle">Identidade Local · Marca Pessoal · Reels · 50–65s</p>
+
+    <div class="script-block">
+      <div class="tag">Cenário / Setup</div>
+      <div class="content">Externo — em algum ponto com caráter de Salvador (centro histórico, pelourinho, ladeira, mercado). Luz natural forte, sombras quentes. Câmera em movimento leve ou estático com ambiente ao fundo.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Gancho — 0 a 3s</div>
+      <div class="content">"Eu não me inspiro em revistas de design. Eu me inspiro aqui."</div>
+      <div class="note">Dito enquanto olha pro ambiente ao redor, não pra câmera.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Desenvolvimento — 3 a 57s</div>
+      <div class="content">"Salvador tem uma paleta que a maioria das pessoas não sabe nomear mas todo mundo reconhece quando vê. O amarelo desbotado das fachadas do Pelourinho. O azul dos azulejos que aparece do nada numa rua sem nome. O bege quente das pedras que parecem ter sido escolhidas à mão.<br><br>
+      Tem o artesanato. A madeira trabalhada dos mercados. O tecido. A cerâmica. Coisas que nenhum catálogo europeu vai te mostrar — mas que têm mais personalidade do que qualquer tendência que chega do exterior.<br><br>
+      Quando eu projeto um ambiente, essas referências entram — às vezes de forma explícita, às vezes como textura, como cor de fundo, como um objeto que ancora tudo o mais.<br><br>
+      Isso é o que torna o meu trabalho baiano. Não no sentido folclórico. No sentido de que tem raiz, tem lugar, tem história."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">CTA — 57 a 65s</div>
+      <div class="content">"Se você quer um projeto com essa identidade — você sabe onde me encontrar."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">B-roll sugerido</div>
+      <div class="content">Fachadas coloridas do centro histórico / azulejos / artesanato no mercado / detalhes de textura da cidade / Felipe caminhando e observando</div>
+    </div>
+  </div>
+
+  <!-- VÍDEO 8 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Vídeo 08</div>
+      <h3>"A tendência de decoração que eu não vou usar"</h3>
+    </div>
+    <p class="subtitle">Opinião · Contrarian · Engajamento · Reels · 40–55s</p>
+
+    <div class="script-block">
+      <div class="tag">Cenário / Setup</div>
+      <div class="content">Sentado de forma relaxada. Tom de opinião honesta, não de polêmica forçada. O objetivo é mostrar que tem ponto de vista — não gerar briga.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Gancho — 0 a 3s</div>
+      <div class="content">"Tem uma tendência que dominou o Instagram de decoração nos últimos anos — e que eu conscientemente não uso nos meus projetos."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">Desenvolvimento — 3 a 48s</div>
+      <div class="content">"O minimalismo radical. Aquele estilo onde tudo é branco, nada tem textura, nenhum objeto conta história, e o ambiente parece que foi esvaziado na véspera pra fazer foto.<br><br>
+      Eu entendo a lógica. É limpo. Fotografa bem. Não vai envelhecer mal em cinco anos porque não tem nada que possa envelhecer.<br><br>
+      O problema é exatamente esse: um ambiente sem personalidade não envelhece porque nunca teve vida.<br><br>
+      O meu cliente não quer um espaço que pareça editorial. Quer um espaço que pareça dele. E esses dois objetivos às vezes são muito diferentes.<br><br>
+      Minimalismo pode ser lindo quando é uma escolha real, que vem de quem mora ali. Quando é só uma tendência copiada — aparece."</div>
+      <div class="note">Pausar depois de "nunca teve vida." É a frase mais compartilhável do vídeo.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">CTA — 48 a 55s</div>
+      <div class="content">"Concorda? Discorda? Me conta nos comentários."</div>
+      <div class="note">Um dos poucos vídeos com CTA para comentários — esse formato de opinião gera debate.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="tag">B-roll sugerido</div>
+      <div class="content">Contraste visual: ambiente all-white genérico (referência de foto, sem identificar) vs. ambiente com personalidade e textura dos projetos do Felipe</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════ CARROSSÉIS ══════════ -->
+<section id="carrosseis">
+  <h2 class="section-title"><span>02</span>Carrosséis</h2>
+
+  <!-- C1 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 01</div>
+      <h3>"5 decisões que fazem toda a diferença em um projeto de alto padrão"</h3>
+    </div>
+    <p class="subtitle">Educação · Aspiracional · Alta chance de salvar</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">5 decisões que fazem toda a diferença em um projeto de alto padrão</div>
+        <div class="slide-copy">@felipefraga.arq</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">1. Iluminação planejada desde o início</div>
+        <div class="slide-copy">A maioria deixa pra última hora. Em projetos de alto padrão, a luz é desenhada junto com o layout — e muda absolutamente tudo.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">2. Materiais nobres nos lugares certos</div>
+        <div class="slide-copy">Não é sobre colocar mármore em tudo. É sobre saber onde cada material vai ter mais impacto visual e durabilidade real.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">3. Marcenaria sob medida</div>
+        <div class="slide-copy">Móveis planejados não são luxo — são eficiência. Cada centímetro aproveitado, cada detalhe com propósito.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 5</div>
+        <div class="slide-title">4. Coordenação de todos os fornecedores</div>
+        <div class="slide-copy">O arquiteto não só projeta — ele coordena. Evita retrabalho, atrasos e dinheiro perdido em decisões desconexas.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Projetos com histórias, memórias e afeto.</div>
+        <div class="slide-copy">@felipefraga.arq · Link na bio para conversar sobre o seu projeto.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C2 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 02</div>
+      <h3>"Como escolher o arquiteto certo para o seu projeto"</h3>
+    </div>
+    <p class="subtitle">Educação · Qualificação · Atrair cliente consciente</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">Como escolher o arquiteto certo para o seu projeto</div>
+        <div class="slide-copy">O que ninguém te conta — mas você precisa saber antes de fechar.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">Olhe o portfólio com atenção</div>
+        <div class="slide-copy">Você se identifica com a estética? Tem projetos no padrão que você busca? Gosto e repertório não se ensinam — eles aparecem no trabalho.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">Pergunte como funciona o processo</div>
+        <div class="slide-copy">Um bom profissional vai te explicar cada etapa antes de assinar qualquer coisa. Se não sabe responder, é um sinal importante.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">Entenda o que está incluso</div>
+        <div class="slide-copy">Projeto executivo, acompanhamento de obra, visitas, revisões — o que entra no escopo? Transparência no início evita conflitos no meio.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 5</div>
+        <div class="slide-title">Não escolha só pelo preço</div>
+        <div class="slide-copy">O menor orçamento quase sempre vira o projeto mais caro. O que parece economia no início pode se tornar retrabalho, atraso e frustração.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Quer conversar sobre o seu projeto?</div>
+        <div class="slide-copy">@felipefraga.arq · Link na bio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C3 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 03</div>
+      <h3>"A paleta que funciona em qualquer ambiente de alto padrão"</h3>
+    </div>
+    <p class="subtitle">Visual · Técnico · Alto potencial de salvar</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">A paleta que funciona em qualquer ambiente de alto padrão</div>
+        <div class="slide-copy">Não é o que você imagina.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">Neutros quentes como base</div>
+        <div class="slide-copy">Off-white, areia e linho criam a tela certa. São versáteis, atemporais e fazem qualquer acabamento nobre parecer mais rico.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">Uma cor âncora, usada com coragem</div>
+        <div class="slide-copy">Um tom terroso, verde musgo ou azul profundo — escolhido com intenção. Aplicado em um ponto estratégico, não espalhado por tudo.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">A textura é a verdadeira cor</div>
+        <div class="slide-copy">Madeira, pedra, linho, couro — em projetos de alto padrão, a profundidade visual vem da textura, não da tinta. Isso é o que diferencia.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 5</div>
+        <div class="slide-title">Arte como ponto de cor</div>
+        <div class="slide-copy">Uma peça de arte brasileira bem escolhida faz mais pelo ambiente do que qualquer cor de parede. E conta uma história que nenhuma tinta conta.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Projetos com identidade. Não com fórmula.</div>
+        <div class="slide-copy">@felipefraga.arq · Salva esse post pra consultar no projeto.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C4 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 04</div>
+      <h3>Antes e Depois — [Projeto a definir]</h3>
+    </div>
+    <p class="subtitle">Prova Social · Alta conversão · Definir projeto com Felipe</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">"Esse espaço tinha tudo para ser qualquer coisa. Virou exatamente o que precisava ser."</div>
+        <div class="slide-copy">Antes e depois · [Nome do projeto]</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">O antes</div>
+        <div class="slide-copy">Foto original do espaço + contexto breve: o que o cliente trouxe como ponto de partida, o desafio do projeto.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slides 3–5</div>
+        <div class="slide-title">O processo</div>
+        <div class="slide-copy">Moodboard / planta / decisões-chave que foram tomadas. Mostrar o raciocínio por trás, não só o resultado.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slides 6–8</div>
+        <div class="slide-title">O depois</div>
+        <div class="slide-copy">Fotos do ambiente finalizado, com destaque para os detalhes que fazem diferença — textura, luz, marcenaria, arte.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">O seu espaço também tem essa história pra contar.</div>
+        <div class="slide-copy">@felipefraga.arq · Link na bio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C5 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 05</div>
+      <h3>"Projetos coloridos não são para todo mundo. E isso é algo bom."</h3>
+    </div>
+    <p class="subtitle">Posicionamento · Filtro de cliente · Identidade da marca</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">Projetos coloridos não são para todo mundo.</div>
+        <div class="slide-copy">E isso é algo bom.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">Não é sobre exagero</div>
+        <div class="slide-copy">Projeto colorido não quer dizer paredes laranja por todo lado. Quer dizer que o espaço tem personalidade — que ele não tem medo de existir.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">É sobre coragem estética</div>
+        <div class="slide-copy">Meu cliente ideal não quer um espaço que poderia ser de qualquer um. Quer um espaço que só poderia ser dele — com referências, história, identidade.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">A arte brasileira é minha grande referência</div>
+        <div class="slide-copy">Cores, texturas, artesanato, cultura. Incorporar isso num projeto de alto padrão é criar algo que não tem preço de prateleira — tem valor de obra.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Se você quer um espaço com vida — você está no lugar certo.</div>
+        <div class="slide-copy">@felipefraga.arq</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C6 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 06</div>
+      <h3>"O erro mais caro que vejo em projetos de alto padrão"</h3>
+    </div>
+    <p class="subtitle">Educação · Dor específica · Atrair quem está decidindo</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">O erro mais caro que vejo em projetos de alto padrão</div>
+        <div class="slide-copy">E não é o que você está pensando.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">Decidir sem projeto</div>
+        <div class="slide-copy">Comprar o revestimento antes de ter o projeto executivo parece eficiência. É o caminho mais rápido pro retrabalho.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">Por que acontece?</div>
+        <div class="slide-copy">Ansiedade, prazo, promoção irresistível. Mas em projetos de padrão alto, cada decisão antecipada fecha uma porta que vai custar caro pra reabrir.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">O projeto como guia, não como burocracia</div>
+        <div class="slide-copy">Um projeto executivo bem feito não é papelada. É o mapa que garante que cada centavo investido chegue onde deveria chegar.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Planejando um projeto? Vamos conversar antes de qualquer decisão.</div>
+        <div class="slide-copy">@felipefraga.arq · Link na bio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C7 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 07</div>
+      <h3>"Sobre mim — além do canudo"</h3>
+    </div>
+    <p class="subtitle">Humanização · Conexão · Construção de confiança</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">Sobre mim — além do canudo.</div>
+        <div class="slide-copy">Foto do Felipe — editorial, não profissional forçado.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">Baiano, 24 anos, quase 2 de formado</div>
+        <div class="slide-copy">Sim, sou jovem. Mas ter quase 2 anos de mercado com projetos reais entregues, clientes satisfeitos e uma série de obra documentada diz mais do que qualquer tempo de formado.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">Pós-graduando em Design de Interiores</div>
+        <div class="slide-copy">Porque arquitetura e interiores andam juntos quando o projeto é verdadeiro. Não paro de aprender — e isso aparece em cada detalhe do trabalho.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">Fã de arte e artesanato brasileiro</div>
+        <div class="slide-copy">Não é só referência estética — é convicção. Acredito que os melhores projetos têm raízes. Incorporo cultura, textura e história em cada ambiente.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Se você chegou até aqui — a gente já tem algo em comum.</div>
+        <div class="slide-copy">@felipefraga.arq · Me chama pra conversar.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C8 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 08</div>
+      <h3>"O que é a assinatura FF — e como ela aparece em cada projeto"</h3>
+    </div>
+    <p class="subtitle">Marca Pessoal · Diferenciação · Alto potencial de compartilhamento</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">A assinatura FF.</div>
+        <div class="slide-copy">O que é — e como ela aparece em tudo que eu faço.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">Não é um logo. É uma promessa.</div>
+        <div class="slide-copy">A assinatura FF representa que aquele espaço foi pensado com intenção, cuidado e identidade. Que não é um projeto qualquer — é um projeto que poderia só ser daquele cliente.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">Ela aparece nos detalhes</div>
+        <div class="slide-copy">Na escolha de uma peça de artesanato. Na forma como a luz toca uma superfície. No elemento que ninguém consegue nomear, mas todo mundo sente.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">"Projetos com histórias, memórias e afetos"</div>
+        <div class="slide-copy">Essa frase não é slogan. É o critério que uso pra aceitar um projeto. Se não tem história pra contar, não tem assinatura FF pra colocar.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Quer ter a assinatura FF no seu espaço?</div>
+        <div class="slide-copy">@felipefraga.arq · Link na bio.</div>
+      </div>
+    </div>
+  </div>
+  <!-- C9 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 09</div>
+      <h3>"O que é um briefing de verdade — e por que ele define tudo"</h3>
+    </div>
+    <p class="subtitle">Processo · Educação · Diferenciação técnica</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">O briefing é onde o projeto começa de verdade.</div>
+        <div class="slide-copy">E a maioria das pessoas não sabe o que é um briefing de verdade.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">Não é uma lista de cômodos</div>
+        <div class="slide-copy">Quarto, sala, cozinha — isso qualquer planta tem. Briefing de verdade vai mais fundo: como você vive, o que te incomoda no espaço atual, o que te faz sentir em casa.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">As perguntas que eu faço</div>
+        <div class="slide-copy">Onde você se sentiu mais em casa na vida? Tem algum espaço — hotel, casa de alguém, restaurante — que você nunca esqueceu? O que você faz quando quer descansar de verdade?</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">Por que isso importa</div>
+        <div class="slide-copy">Porque projeto sem briefing profundo entrega um espaço tecnicamente correto e emocionalmente vazio. É bonito — mas não é seu.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 5</div>
+        <div class="slide-title">O briefing leva tempo. Vale cada minuto.</div>
+        <div class="slide-copy">Cada hora investida no início economiza semanas de retrabalho no meio — e meses de insatisfação depois.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">O projeto certo começa com as perguntas certas.</div>
+        <div class="slide-copy">@felipefraga.arq · Link na bio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C10 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 10</div>
+      <h3>"Artesanato brasileiro no design de interiores: como fazer sem virar folclore"</h3>
+    </div>
+    <p class="subtitle">Referência Cultural · Autoridade Estética · Alto potencial de salvar</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">Artesanato brasileiro em projeto de interiores: como usar sem virar folclore.</div>
+        <div class="slide-copy">Tem jeito certo. Tem jeito errado.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">O erro: acumular por acumular</div>
+        <div class="slide-copy">Encher o espaço de peças artesanais sem critério transforma um projeto em loja de souvenirs. A intenção era boa. O resultado não.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">O certo: uma peça que ancora</div>
+        <div class="slide-copy">Uma cerâmica bem escolhida, no lugar certo, com espaço ao redor pra respirar — vale mais do que dez espalhadas. O artesanato tem que ser o ponto, não o ruído.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">O que funciona sempre</div>
+        <div class="slide-copy">Madeira trabalhada à mão. Cerâmica de oleiro. Tecido de tear. São materiais que têm textura real — e textura real é o que separa alto padrão de acabamento genérico.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 5</div>
+        <div class="slide-title">O melhor argumento</div>
+        <div class="slide-copy">Uma peça de artesanato brasileiro tem história, tem origem, tem um rosto por trás. Isso não se encontra em catálogo. E não tem em outro lugar do mundo.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Projetos com raiz. Com lugar. Com afeto.</div>
+        <div class="slide-copy">@felipefraga.arq</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C11 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 11</div>
+      <h3>"Salvador como referência de design — o que a cidade me ensina"</h3>
+    </div>
+    <p class="subtitle">Identidade Local · Conexão com Público Baiano · Compartilhamento</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">As minhas maiores referências de design não estão em revista nenhuma.</div>
+        <div class="slide-copy">Estão aqui.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">A paleta das fachadas do Pelourinho</div>
+        <div class="slide-copy">Amarelo desbotado pelo sol, azul que virou quase cinza, verde que não existe em nenhuma cartela de tinta. São cores que só aparecem quando o tempo trabalha com a mão humana.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">A textura dos mercados</div>
+        <div class="slide-copy">Madeira trabalhada, couro, cerâmica, tecido. Cada material com história visível. Nenhum acabamento uniforme. É a lição de que imperfeição com intenção é mais rica do que perfeição sem alma.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">A luz da Bahia</div>
+        <div class="slide-copy">Direta, quente, sem filtro. Quando você projeta pra Salvador, projeta pra uma cidade onde a luz é personagem — não pano de fundo. Ignorar isso é perder metade do projeto.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Arquitetura com raízes baianas. Para quem quer um espaço com identidade.</div>
+        <div class="slide-copy">@felipefraga.arq · Salvador/BA · Link na bio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C12 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 12</div>
+      <h3>"3 perguntas que você deve fazer antes de começar qualquer reforma"</h3>
+    </div>
+    <p class="subtitle">Educação · Qualificação · Atrair quem está decidindo agora</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">Antes de contratar, antes de comprar, antes de demolir — responda essas 3 perguntas.</div>
+        <div class="slide-copy">Podem te economizar muito dinheiro.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">1. Você sabe o que incomoda de verdade?</div>
+        <div class="slide-copy">Não o que parece feio. O que te incomoda no dia a dia daquele espaço. A resposta raramente é visual — e o projeto certo começa por aí.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">2. Você tem uma reserva de contingência?</div>
+        <div class="slide-copy">Todo orçamento de obra tem imprevisto. Quem não se prepara pra isso para no meio. Regra geral: reserve 15% a 20% além do valor combinado.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">3. Você sabe quanto tempo vai levar — de verdade?</div>
+        <div class="slide-copy">Não o prazo que parece bom. O prazo real, com margem. Projetos apressados são a fonte número um de arrependimento em obra.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Se quiser começar do jeito certo — me chama antes de qualquer decisão.</div>
+        <div class="slide-copy">@felipefraga.arq · Link na bio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C13 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 13</div>
+      <h3>"O que muda quando o arquiteto acompanha a obra — não só assina o projeto"</h3>
+    </div>
+    <p class="subtitle">Valor do Serviço Completo · Conversão · Qualificação</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">Projeto sem acompanhamento de obra é metade do trabalho.</div>
+        <div class="slide-copy">A outra metade é onde tudo pode dar errado.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">O que o projeto não prevê</div>
+        <div class="slide-copy">Parede que não estava onde a planta indicava. Fornecedor que substituiu o material sem avisar. Detalhe que na execução perdeu completamente o sentido do projeto. Isso acontece. O arquiteto em obra resolve antes de você saber que existia.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">Quem fiscaliza o que foi prometido?</div>
+        <div class="slide-copy">Sem acompanhamento profissional, é você — sem referência técnica pra saber o que questionar. Com acompanhamento, é o arquiteto — que sabe exatamente o que deveria estar acontecendo.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">O custo do retrabalho</div>
+        <div class="slide-copy">Em obra de padrão alto, desfazer e refazer é exponencialmente mais caro do que fazer certo na primeira vez. O acompanhamento é o que garante a primeira vez.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Projeto e acompanhamento. Do início ao fim.</div>
+        <div class="slide-copy">@felipefraga.arq · Link na bio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C14 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 14</div>
+      <h3>"Meu moodboard de referências para 2026"</h3>
+    </div>
+    <p class="subtitle">Curadoria · Tendência · Alto engajamento por salvamento</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">O que está no meu moodboard de referências agora.</div>
+        <div class="slide-copy">Não tendências. Referências.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">Materiais com tempo</div>
+        <div class="slide-copy">Madeira que mostra o uso. Pedra com variação natural. Couro que patina. Materiais que ficam mais bonitos com os anos — não materiais que precisam ser substituídos.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">Cor que vem da textura</div>
+        <div class="slide-copy">Menos tinta, mais superfície. O interesse visual vem do material, não do pigmento. Isso é o que cria profundidade real em vez de decoração plana.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">Espaços que respiram</div>
+        <div class="slide-copy">Não minimalismo vazio — mas generosidade de espaço. Cada objeto no lugar certo, com espaço pra existir. O que não está lá é tão importante quanto o que está.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 5</div>
+        <div class="slide-title">Arte brasileira como âncora</div>
+        <div class="slide-copy">Uma peça com origem, com artista, com história. Não decoração de loja. Arte que transforma o ambiente em algo único — porque aquela peça específica não tem em outro lugar.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Salva esse post — e me conta qual referência mais fez sentido pra você.</div>
+        <div class="slide-copy">@felipefraga.arq</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C15 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 15</div>
+      <h3>"Por que ambientes sem personalidade custam mais pra corrigir depois"</h3>
+    </div>
+    <p class="subtitle">Dor Específica · Decisão de Alto Custo · Conversão</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">O espaço "seguro" pode ser o mais caro no longo prazo.</div>
+        <div class="slide-copy">Aqui está o porquê.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">O raciocínio do seguro</div>
+        <div class="slide-copy">Tudo neutro, tudo combinando, nada que possa errar. Parece inteligente. É a lógica que cria ambientes que ninguém odeia — mas que ninguém ama.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">O que acontece depois</div>
+        <div class="slide-copy">O cliente usa o espaço por um ou dois anos e sente que falta algo. Começa a trocar peças, adicionar objetos, repintar. Cada intervenção custou dinheiro — e o espaço ainda não tem identidade.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">O verdadeiro custo</div>
+        <div class="slide-copy">Um espaço genérico que precisa ser corrigido depois custa mais do que um espaço com identidade desde o início. O projeto certo não é mais caro — é o oposto.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Faça certo desde o começo. O seu espaço merece ter uma história.</div>
+        <div class="slide-copy">@felipefraga.arq · Link na bio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C16 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">Post 16</div>
+      <h3>"As perguntas que eu mais recebo — respondidas de uma vez"</h3>
+    </div>
+    <p class="subtitle">FAQ · Engajamento · Objeções · Compartilhamento</p>
+    <div class="slides-grid">
+      <div class="slide-card capa">
+        <div class="slide-num">Capa</div>
+        <div class="slide-title">As perguntas que chegam no meu direct toda semana.</div>
+        <div class="slide-copy">Respondidas de forma direta.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 2</div>
+        <div class="slide-title">"Você trabalha só com projetos grandes?"</div>
+        <div class="slide-copy">Não. Eu trabalho com projetos certos — onde tenha conexão real com quem vai viver naquele espaço. Tamanho não define isso.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 3</div>
+        <div class="slide-title">"Quanto tempo demora um projeto de interiores?"</div>
+        <div class="slide-copy">O projeto em si: de 4 a 10 semanas dependendo da complexidade. A obra: variável. O que eu não faço é dar prazo irreal pra fechar contrato.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 4</div>
+        <div class="slide-title">"Você trabalha fora de Salvador?"</div>
+        <div class="slide-copy">Sim. Parte do projeto pode ser feita remotamente. Para obras que exigem acompanhamento presencial, conversamos sobre a logística caso a caso.</div>
+      </div>
+      <div class="slide-card">
+        <div class="slide-num">Slide 5</div>
+        <div class="slide-title">"Como funciona a primeira conversa?"</div>
+        <div class="slide-copy">Sem compromisso. Você me conta o projeto, eu te explico como trabalho. Se fizer sentido pra ambos, seguimos. Se não fizer, saímos melhores do que entramos.</div>
+      </div>
+      <div class="slide-card encerramento">
+        <div class="slide-num">Encerramento</div>
+        <div class="slide-title">Tem mais alguma dúvida? Me chama no direct.</div>
+        <div class="slide-copy">@felipefraga.arq · Link na bio.</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════ CRIATIVOS ══════════ -->
+<section id="criativos">
+  <h2 class="section-title"><span>03</span>Direção de Criativos</h2>
+
+  <div class="card">
+    <h3 style="margin-bottom:20px; font-size:17px; color:var(--bark);">Vídeos — Setup e Estética</h3>
+    <div class="criativo-grid">
+      <div class="criativo-item">
+        <h4>Iluminação</h4>
+        <p>Sempre quente. Luz natural lateral ou softbox com gel âmbar. Evitar luz fria, fluorescente ou flash direto. Sombra leve é bem-vinda — cria profundidade e sofisticação.</p>
+      </div>
+      <div class="criativo-item">
+        <h4>Figurino</h4>
+        <p>Tons neutros e terrosos: off-white, caramelo, bege, terracota suave. Evitar preto dominante ou cores vibrantes que destoem da paleta do perfil. Roupas limpas, sem logos aparentes.</p>
+      </div>
+      <div class="criativo-item">
+        <h4>Enquadramento</h4>
+        <p>Próximo para os roteiros de posicionamento e humanização. Médio para os de educação. Câmera levemente abaixo da linha dos olhos (autoridade natural). Evitar enquadramento de cabeça cortada.</p>
+      </div>
+      <div class="criativo-item">
+        <h4>Cenário</h4>
+        <p>Ateliê, obra com andamento visível, ou parede neutra com elemento de projeto ao fundo. Nunca fundo branco genérico. O ambiente do vídeo já deve comunicar o posicionamento.</p>
+      </div>
+      <div class="criativo-item">
+        <h4>Legendas</h4>
+        <p>Fonte serif (Cormorant Garamond ou similar). Cor areia (#D8C4A4) ou creme (#F6EFE2). Animação de entrada sutil. Sem bordas grossas ou sombreamento exagerado.</p>
+      </div>
+      <div class="criativo-item">
+        <h4>Trilha</h4>
+        <p>Instrumental suave, jazzística ou minimalista. Sem trap ou música com letra em português que compete com a voz. Volume baixo — a voz é o elemento principal.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom:20px; font-size:17px; color:var(--bark);">Carrosséis — Identidade Visual</h3>
+    <div class="criativo-grid">
+      <div class="criativo-item">
+        <h4>Paleta de cores</h4>
+        <div class="color-row">
+          <div class="color-chip"><div class="dot" style="background:#4A2410"></div> Bark — títulos escuros</div>
+          <div class="color-chip"><div class="dot" style="background:#A85C2A"></div> Terra — destaque</div>
+          <div class="color-chip"><div class="dot" style="background:#D8C4A4"></div> Areia — texto claro</div>
+          <div class="color-chip"><div class="dot" style="background:#EDE3D0"></div> Linho — fundo slides</div>
+          <div class="color-chip"><div class="dot" style="background:#F6EFE2"></div> Cream — fundo alternado</div>
+        </div>
+      </div>
+      <div class="criativo-item">
+        <h4>Tipografia</h4>
+        <p><strong>Títulos:</strong> Cormorant Garamond Light ou Regular — elegância sem peso.<br>
+        <strong>Corpo:</strong> Jost Light ou Regular — legibilidade limpa.<br>
+        <strong>Labels/tags:</strong> Jost com espaçamento de letras aumentado (tracking alto).</p>
+      </div>
+      <div class="criativo-item">
+        <h4>Elementos gráficos</h4>
+        <p>Linhas finas (0.5–1pt) em terra ou bark para separadores. Sem ícones. Sem bordas grossas. Espaço em branco generoso — o minimalismo é parte do posicionamento premium.</p>
+      </div>
+      <div class="criativo-item">
+        <h4>Fotos</h4>
+        <p>Tratamento quente: elevar tons laranja/amarelo levemente, reduzir azul. Leve névoa ou grain sutil para profundidade. Nunca filtros saturados ou HDR. Referência: tratamento editorial de revistas de interiores.</p>
+      </div>
+      <div class="criativo-item">
+        <h4>Capa do carrossel</h4>
+        <p>Fundo escuro (bark ou terra) + texto claro. Ou foto do projeto em destaque + texto sobreposto com overlay suave. Deve parar o scroll — usar a frase mais impactante do post, não o título genérico.</p>
+      </div>
+      <div class="criativo-item">
+        <h4>Slide de encerramento</h4>
+        <p>Sempre fundo terra (#A85C2A) + texto cream. Logo ou @felipefraga.arq em destaque. CTA direto e específico — nunca "sigam o perfil" genérico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CALENDÁRIO ══════════ -->
+<section id="calendario">
+  <h2 class="section-title"><span>04</span>Calendário Editorial — 30 dias</h2>
+
+  <div class="card" style="padding: 0; overflow:hidden;">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:80px">Semana</th>
+          <th style="width:100px">Dia</th>
+          <th>Conteúdo</th>
+          <th style="width:120px">Formato</th>
+          <th>Objetivo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2"><strong>Sem. 1</strong></td>
+          <td>Terça</td>
+          <td><span class="tag-post">Post</span> Post 07 — Sobre mim, além do canudo</td>
+          <td>Carrossel</td>
+          <td>Apresentação humanizada</td>
+        </tr>
+        <tr>
+          <td>Sexta</td>
+          <td><span class="tag-video">Vídeo</span> Vídeo 04 — O projeto que mais me ensinou</td>
+          <td>Reels</td>
+          <td>Conexão emocional</td>
+        </tr>
+        <tr>
+          <td rowspan="2"><strong>Sem. 2</strong></td>
+          <td>Terça</td>
+          <td><span class="tag-post">Post</span> Post 01 — 5 decisões de alto padrão</td>
+          <td>Carrossel</td>
+          <td>Valor, salvar</td>
+        </tr>
+        <tr>
+          <td>Sexta</td>
+          <td><span class="tag-video">Vídeo</span> Vídeo 01 — O ambiente que você tem fala...</td>
+          <td>Reels</td>
+          <td>Posicionamento</td>
+        </tr>
+        <tr>
+          <td rowspan="3"><strong>Sem. 3</strong></td>
+          <td>Segunda</td>
+          <td><span class="tag-post">Post</span> Post 05 — Projetos coloridos não são pra todo mundo</td>
+          <td>Carrossel</td>
+          <td>Filtro de cliente</td>
+        </tr>
+        <tr>
+          <td>Quarta</td>
+          <td><span class="tag-post">Post</span> Post 04 — Antes e Depois</td>
+          <td>Carrossel</td>
+          <td>Prova social</td>
+        </tr>
+        <tr>
+          <td>Sexta</td>
+          <td><span class="tag-video">Vídeo</span> Vídeo 02 — Por que eu não aceito qualquer projeto</td>
+          <td>Reels</td>
+          <td>Qualificação</td>
+        </tr>
+        <tr>
+          <td rowspan="3"><strong>Sem. 4</strong></td>
+          <td>Terça</td>
+          <td><span class="tag-post">Post</span> Post 03 — A paleta de alto padrão</td>
+          <td>Carrossel</td>
+          <td>Referência visual</td>
+        </tr>
+        <tr>
+          <td>Quarta</td>
+          <td><span class="tag-post">Post</span> Post 02 — Como escolher seu arquiteto</td>
+          <td>Carrossel</td>
+          <td>Educação + qualificação</td>
+        </tr>
+        <tr>
+          <td>Sexta</td>
+          <td><span class="tag-video">Vídeo</span> Vídeo 03 — O que ninguém te conta antes de reformar</td>
+          <td>Reels</td>
+          <td>Conversão</td>
+        </tr>
+        <tr>
+          <td rowspan="2"><strong>Sem. 5</strong></td>
+          <td>Terça</td>
+          <td><span class="tag-post">Post</span> Post 06 — O erro mais caro em projetos de alto padrão</td>
+          <td>Carrossel</td>
+          <td>Dor + autoridade</td>
+        </tr>
+        <tr>
+          <td>Quinta</td>
+          <td><span class="tag-post">Post</span> Post 08 — O que é a assinatura FF</td>
+          <td>Carrossel</td>
+          <td>Marca pessoal</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <p class="subtitle">Horários sugeridos</p>
+    <div class="criativo-grid">
+      <div class="criativo-item">
+        <h4>Reels</h4>
+        <p>Publicar entre <strong>18h e 20h</strong>. Pico de engajamento do público profissional / cliente de médio-alto padrão. Evitar manhãs para vídeos — concorrem com notícias.</p>
+      </div>
+      <div class="criativo-item">
+        <h4>Carrosséis</h4>
+        <p>Publicar entre <strong>12h e 13h</strong> (segunda e terça) ou <strong>19h</strong> (quarta a sexta). Carrosséis geram mais salvamentos que likes — horário de decisão calma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+  // Highlight active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+
+</body>
+</html>
